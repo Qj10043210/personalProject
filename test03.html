@@ -8,14 +8,43 @@
     <title>Document</title>
     <style>
         #test {
-            position: relative;
-            margin: 0 auto;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
             max-width: 600px;
-            height: 813px;
-            background-color: rgb(40, 40, 40);
+            aspect-ratio: 600 / 813;
+           
             z-index: 10;
             
+
         }
+        #bigbox-bottom-shadow{
+           
+            z-index: 9;
+            position: absolute;
+            top: 50%;
+            left: -5%;
+            width: 110%;
+            height: 50%;
+            background-color: rgb(102, 101, 101);
+            clip-path: ellipse(50% 9% at 50% 95.5%);
+        }
+        #bigbox{
+            z-index: 9;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: url('./6.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            border-radius: 15px;
+            top: 0;
+            bottom: 0;
+        }
+
         #showbox-back {
             z-index: 10;
             position: absolute;
@@ -23,14 +52,14 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(119, 197, 201, 0.67);/* From https://css.glass */
+            background: rgba(119, 197, 201, 0.67);
+            /* From https://css.glass */
             border-radius: 16px;
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
             backdrop-filter: blur(7.7px);
             -webkit-backdrop-filter: blur(7.7px);
             border: 1px solid rgba(133, 219, 224, 0.3);
-            clip-path: polygon(
-                    51% 3.5%,
+            clip-path: polygon(51% 3.5%,
                     /* middle top*/
                     93.5% 4.5%,
                     /* right top*/
@@ -45,7 +74,7 @@
                     5.5% 28.5%,
                     /* left center*/
                     6.5% 4.5%);
-                    /* left top*/
+            /* left top*/
         }
 
         #showbox {
@@ -55,7 +84,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(133, 219, 224, 0.67);/* From https://css.glass */
+            background: rgba(133, 219, 224, 0.67);
+            /* From https://css.glass */
             border-radius: 16px;
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
             backdrop-filter: blur(7.7px);
@@ -76,9 +106,10 @@
                     6% 28.5%,
                     /* left center*/
                     7% 5%);
-                    /* left top*/
+            /* left top*/
         }
-        #crane-box{
+
+        #crane-box {
             z-index: 10;
             position: absolute;
             top: 0;
@@ -89,7 +120,8 @@
             clip-path: polygon(16% 4.8%, 27% 4.6%, 27% 8%, 16% 8%);
 
         }
-        #crane-body{
+
+        #crane-body {
             z-index: 10;
             position: absolute;
             top: 0;
@@ -100,7 +132,8 @@
             clip-path: polygon(21% 5%, 22% 4.9%, 22% 30%, 21% 30%);
 
         }
-        #crane-hand-top{
+
+        #crane-hand-top {
             z-index: 10;
             position: absolute;
             top: 0;
@@ -111,25 +144,27 @@
             clip-path: circle(3% at 21.5% 30%);
 
         }
-        #crane-hand-bottom{
+
+        #crane-hand-bottom {
             z-index: 10;
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(119,195,199, 1);
+            background-color: rgba(119, 195, 199, 1);
             clip-path: circle(2% at 21.5% 30%);
 
         }
-        #crane-hand-bottom-bottom{
+
+        #crane-hand-bottom-bottom {
             z-index: 10;
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(119,195,199, 1);
+            background-color: rgba(119, 195, 199, 1);
             clip-path: circle(2% at 21.5% 32%);
 
         }
@@ -254,26 +289,28 @@
             clip-path: ellipse(2.5% 0.5% at 65% 55%);
 
         }
-         #prize-box-body {
+
+        #prize-box-body {
             z-index: 10;
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgb(247,249,248);
+            background-color: rgb(247, 249, 248);
             clip-path: polygon(62.5% 80%, 67.5% 80%, 67.5% 85%, 62.5% 85%);
 
         }
-
     </style>
 </head>
 
 <body>
 
     <div id="test">
+        <div id="bigbox-bottom-shadow"></div>
+        <div id="bigbox"></div>
         <div id="showbox-back"></div>
-        <div id="showbox"></div>        
+        <div id="showbox"></div>
         <div id="crane-body"></div>
         <div id="crane-box"></div>
         <div id="crane-hand-top"></div>
@@ -282,7 +319,7 @@
         <div id="consolebox-top"></div>
         <div id="consolebox-front"></div>
         <div id="consolebox-bar-body-foot-shadow"></div>
-        <div id="consolebox-bar-body"></div>        
+        <div id="consolebox-bar-body"></div>
         <div id="consolebox-bar-body-foot"></div>
         <div id="consolebox-bar-body-head"></div>
         <div id="consolebox-button-foot"></div>
