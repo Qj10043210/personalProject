@@ -6,6 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script>
+        $.noConflict();
+        var jQ = jQuery;
+    </script>
     <style>
         #test {
             position: absolute;
@@ -43,6 +48,13 @@
             border-radius: 15px;
             top: 0;
             bottom: 0;
+            display: flex;
+            justify-content: start;
+            align-items: start;
+            flex-wrap: wrap;
+        }
+        #bigbox>.bigbox_brick{
+           
         }
 
         #showbox-back {
@@ -308,7 +320,9 @@
 
     <div id="test">
         <div id="bigbox-bottom-shadow"></div>
-        <div id="bigbox"></div>
+        <div id="bigbox"> <!-- each brick 6.25% 16s!-->
+            
+        </div>
         <div id="showbox-back"></div>
         <div id="showbox"></div>
         <div id="crane-body"></div>
@@ -336,6 +350,42 @@
 
 
     </div>
+    <script>
+        const bigbox_brickConstQty = 16;
+        jQ(document).ready(function(){
+            let bigboxWidth = jQ('#bigbox').width();
+            let bigboxHeight = jQ('#bigbox').height();
+            let bigbox_brickWidth = 1 / bigbox_brickConstQty;
+            let bigbox_brickHeight = ((bigboxWidth * bigbox_brickWidth) / 4) *3
+            let bigbox_brickQty = Math.ceil(bigboxHeight / bigbox_brickHeight )
+            
+            for(let i=1; i<=bigbox_brickQty; i++){
+                if(i%2==1){//odd
+                    for(let o = 1; o<=bigbox_brickConstQty; o++){
+                        let tempText = "<div class='bigbox_brick bigbox_brick_odd'></div>"
+                        jQ('#bigbox').append(tempText)
+                    }
+                }else{//even
+                    for(let o = 1; o<=(bigbox_brickConstQty+1); o++){
+                        let tempText = "<div class='bigbox_brick bigbox_brick_even'></div>"
+                        jQ('#bigbox').append(tempText)
+                    }
+                }
+            }
+            jQ('.bigbox_brick').css({
+                width : `${bigboxWidth*bigbox_brickWidth}px`,
+                zIndex: 9,
+            height : `${bigbox_brickHeight}px`,
+            border: '1px solid  black',
+            
+            backgroundColor: 'red'
+            })
+    
+
+        })
+
+
+    </script>
 </body>
 
 </html>
