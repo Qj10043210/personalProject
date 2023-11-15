@@ -21,13 +21,14 @@
             margin: auto;
             max-width: 600px;
             aspect-ratio: 600 / 813;
-           
+
             z-index: 10;
-            
+
 
         }
-        #bigbox-bottom-shadow{
-           
+
+        #bigbox-bottom-shadow {
+
             z-index: 9;
             position: absolute;
             top: 50%;
@@ -37,24 +38,48 @@
             background-color: rgb(102, 101, 101);
             clip-path: ellipse(50% 9% at 50% 95.5%);
         }
-        #bigbox{
+
+        #bigbox {
             z-index: 9;
             position: absolute;
             width: 100%;
             height: 100%;
-            background-image: url('./6.jpg');
+            /* background-image: url('./6.jpg'); */
             background-size: cover;
             background-repeat: no-repeat;
-            border-radius: 15px;
+            /* border-radius: 15px; */
             top: 0;
             bottom: 0;
             display: flex;
-            justify-content: start;
-            align-items: start;
+            border-radius: 5px;
+            border: 3px solid black;
+            justify-content: end;
             flex-wrap: wrap;
+            overflow: hidden;
         }
-        #bigbox>.bigbox_brick{
-           
+
+        #bigbox>.bigbox_brick {
+            z-Index: 9;
+
+            box-shadow: inset 0 0  #000000;
+            border-collapse: collapse;
+            box-sizing: border-box;
+        }
+
+        #bigbox>.bigbox_brick.bigbox_brick_normal {
+            aspect-ratio: 4 / 3;
+        }
+
+        #bigbox>.bigbox_brick.bigbox_brick_half {
+            aspect-ratio: 2 / 3;
+        }
+
+        #bigbox>.bigbox_brick.bigbox_brick_odd {
+            background-color: rgba(255, 0, 0, 0.3);
+        }
+
+        #bigbox>.bigbox_brick.bigbox_brick_even {
+            background-color: blue;
         }
 
         #showbox-back {
@@ -64,7 +89,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(119, 197, 201, 0.67);
+            background: rgba(0, 0, 0, 0.67);
             /* From https://css.glass */
             border-radius: 16px;
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -96,13 +121,13 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(133, 219, 224, 0.67);
+            background: #8ed7d2;
             /* From https://css.glass */
             border-radius: 16px;
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
             backdrop-filter: blur(7.7px);
             -webkit-backdrop-filter: blur(7.7px);
-            border: 1px solid rgba(133, 219, 224, 0.3);
+            border: 1px solid #8ed7d2;
             clip-path: polygon(51% 4%,
                     /* middle top*/
                     93% 5%,
@@ -152,7 +177,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgb(206, 206, 206);
+            background-color: rgb(0, 0, 0);
             clip-path: circle(3% at 21.5% 30%);
 
         }
@@ -164,7 +189,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(119, 195, 199, 1);
+            background-color: #8ed7d2;
             clip-path: circle(2% at 21.5% 30%);
 
         }
@@ -176,7 +201,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(119, 195, 199, 1);
+            background-color: #8ed7d2;
             clip-path: circle(2% at 21.5% 32%);
 
         }
@@ -189,8 +214,23 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgb(255, 0, 0);
+
+            background-color: rgb(0, 0, 0);
             clip-path: polygon(30% 54%, 74% 54%, 78% 59%, 24% 59%);
+
+        }
+
+        #consolebox-top::before {
+            z-index: 9;
+            content: "";
+            position: absolute;
+            background-color: rgb(255, 255, 0);
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right:0;
+            /* Adjust the border width and color as needed */
+            clip-path: polygon(30.3% 54.3%, 73.7% 54.3%, 77.2% 58.7%, 24.8% 58.7%);
 
         }
 
@@ -201,9 +241,22 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgb(204, 0, 0);
-            clip-path: polygon(78% 59%, 24% 59%, 24% 63%, 78% 63%);
+            background-color: rgb(0, 0, 0);
+            /* clip-path: polygon(78% 59%, 24% 59%, 24% 63%, 78% 63%); */
+            clip-path: polygon(24% 59%, 78% 59%,  78% 63%, 24% 63%);
 
+        }
+        #consolebox-front::before {
+            z-index: 9;
+            content: "";
+            position: absolute;
+            background-color: rgb(255, 255, 0);
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right:0;
+            /* Adjust the border width and color as needed */
+            clip-path: polygon(24.3% 59.3%, 77.7% 59.3%,  77.7% 62.7%, 24.3% 62.7%);
         }
 
         #consolebox-bar-body {
@@ -213,7 +266,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgb(0, 0, 0);
+            background-color: rgb(146, 139, 139);
             clip-path: polygon(34% 50%, 36% 50%, 36% 56%, 34% 56%);
 
         }
@@ -237,7 +290,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgb(0, 0, 0);
+            background-color: rgb(146, 139, 139);
             clip-path: circle(0.9% at 35% 56%);
 
         }
@@ -249,8 +302,21 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgb(102, 101, 101);
+            background-color: rgb(0, 0, 0);
             clip-path: circle(2% at 35% 50%);
+
+        }
+        #consolebox-bar-body-head::before {
+            content: "";
+            z-index: 10;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #ffffff;
+            clip-path: ellipse(1.2% 0.4% at 36% 50%);
+            transform: rotate(6deg);
 
         }
 
@@ -309,8 +375,82 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgb(247, 249, 248);
-            clip-path: polygon(62.5% 80%, 67.5% 80%, 67.5% 85%, 62.5% 85%);
+            background-color: rgb(255, 0, 0);
+            clip-path: polygon(13% 71%, 33% 71%, 33% 90%, 13% 90%);
+
+        }
+        #prize-box-back {
+            z-index: 10;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgb(3, 3, 3);
+            clip-path: polygon(15% 75%, 31% 75%, 31% 86%, 15% 86%);
+
+        }
+        #prize-box-head-head {
+            z-index: 10;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgb(255, 255, 255);
+            clip-path: ellipse(8% 3% at 23% 75%);
+
+        }
+        #prize-box-head-body {
+            z-index: 10;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgb(224, 224, 224);
+            clip-path: polygon(15% 75%, 31% 75%, 31% 78%, 15% 78%);
+
+        }
+        #prize-box-head-foot {
+            z-index: 10;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgb(224, 224, 224);
+            clip-path: ellipse(8% 2% at 23% 78%);
+
+        }
+        #prize-box-body-foot-shadow {
+            z-index: 10;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgb(151, 149, 149);
+            clip-path: ellipse(8% 1.9% at 23% 86.2%);
+            /* clip-path: polygon(30% 87%, 28% 88.5%, 27% 89%, 
+            23% 89.3%, 
+            19% 89%, 18% 88.5%, 16% 87%, 
+            15% 86%, 31% 86%); */
+
+        }
+        #prize-box-body-foot {
+            z-index: 10;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgb(224, 224, 224);
+            clip-path: ellipse(8% 1% at 23% 86%);
+            /* clip-path: polygon(30% 87%, 28% 88.5%, 27% 89%, 
+            23% 89.3%, 
+            19% 89%, 18% 88.5%, 16% 87%, 
+            15% 86%, 31% 86%); */
 
         }
     </style>
@@ -321,7 +461,7 @@
     <div id="test">
         <div id="bigbox-bottom-shadow"></div>
         <div id="bigbox"> <!-- each brick 6.25% 16s!-->
-            
+
         </div>
         <div id="showbox-back"></div>
         <div id="showbox"></div>
@@ -340,50 +480,84 @@
         <div id="consolebox-button-body"></div>
         <div id="consolebox-button-body-foot"></div>
         <div id="consolebox-button-head"></div>
+        
         <div id="prize-box-body"></div>
+        <div id="prize-box-body-foot-shadow"></div>
         <div id="prize-box-back"></div>
         <div id="prize-box-back-foot"></div>
-        <div id="prize-box-back-shadow"></div>
-        <div id="prize-box-head-head"></div>
         <div id="prize-box-head-body"></div>
         <div id="prize-box-head-foot"></div>
+        <div id="prize-box-head-head"></div>
+        
+        <div id="prize-box-body-foot"></div>
 
 
     </div>
     <script>
-        const bigbox_brickConstQty = 16;
-        jQ(document).ready(function(){
+        const bigbox_brickConstQty = 9;
+        const bigbox_brickColorTables = ["#A5A9B4", "#A0A5A9", "#635F61", "#6C6E68", "#9BA19D", "#D4D5C9", "#958A73", "#E0E0E0", "#D9D9D9"];
+        const bigbox_brickColorTabless = ["#B67B50", "#FBE890", "#FCB76D", "#f5cd2f", "#f0d588", "#F8BB3D", "#FA9C1C", "#FECCCF", "#FEBABD"]
+        const bigbox_brickColorTablesss = ["#B67B50", "#B67B50", "#B67B50", "#f5cd2f", "#f5cd2f", "#f5cd2f", "#FA9C1C", "#FA9C1C", "#FA9C1C"];
+        const bigbox_brickColorTable = ["#FCFCFC", "#FCFCFC", "#FCFCFC", "#F2F3F2", "#F2F3F2", "#F2F3F2", "#f7f9f8", "#f7f9f8", "#f7f9f8"];
+
+        jQ(document).ready(function () {
             let bigboxWidth = jQ('#bigbox').width();
             let bigboxHeight = jQ('#bigbox').height();
-            let bigbox_brickWidth = 1 / bigbox_brickConstQty;
-            let bigbox_brickHeight = ((bigboxWidth * bigbox_brickWidth) / 4) *3
-            let bigbox_brickQty = Math.ceil(bigboxHeight / bigbox_brickHeight )
-            
-            for(let i=1; i<=bigbox_brickQty; i++){
-                if(i%2==1){//odd
-                    for(let o = 1; o<=bigbox_brickConstQty; o++){
-                        let tempText = "<div class='bigbox_brick bigbox_brick_odd'></div>"
-                        jQ('#bigbox').append(tempText)
+            let bigbox_brickWidth = 1 / bigbox_brickConstQty; //0.0625
+            let bigbox_brickHeight = ((bigboxWidth * bigbox_brickWidth) / 4) * 3
+            let bigbox_brickQty = Math.floor(bigboxHeight / bigbox_brickHeight)
+
+            for (let i = 1; i <= bigbox_brickQty; i++) {
+                if (i % 2 == 1) {//odd
+                    for (let o = 1; o <= bigbox_brickConstQty; o++) {
+                        let tempNum = anyway02_RandNumberXYZ(0, 8, 10);
+
+                        let tempText = `<div class='bigbox_brick bigbox_brick_normal bigbox_brick_odd' style='background-color:${bigbox_brickColorTable[tempNum]}'></div>`
+                        jQ('#bigbox').prepend(tempText)
                     }
-                }else{//even
-                    for(let o = 1; o<=(bigbox_brickConstQty+1); o++){
-                        let tempText = "<div class='bigbox_brick bigbox_brick_even'></div>"
-                        jQ('#bigbox').append(tempText)
+                } else {//even
+                    for (let o = 1; o <= (bigbox_brickConstQty + 1); o++) {
+                        let tempText = "";
+                        let tempNum = anyway02_RandNumberXYZ(0, 8, 10);
+                        if (o == 1 || o == bigbox_brickConstQty + 1) {
+                            tempText = `<div class='bigbox_brick bigbox_brick_half bigbox_brick_even' style='background-color:${bigbox_brickColorTable[tempNum]}'></div>`
+                        } else {
+                            tempText = `<div class='bigbox_brick bigbox_brick_normal bigbox_brick_even' style='background-color:${bigbox_brickColorTable[tempNum]}'></div>`
+                        }
+                        jQ('#bigbox').prepend(tempText)
                     }
                 }
             }
-            jQ('.bigbox_brick').css({
-                width : `${bigboxWidth*bigbox_brickWidth}px`,
-                zIndex: 9,
-            height : `${bigbox_brickHeight}px`,
-            border: '1px solid  black',
-            
-            backgroundColor: 'red'
+            jQ('.bigbox_brick_normal').css({
+                width: `${100 / bigbox_brickConstQty}%`,
+
             })
-    
+            jQ('.bigbox_brick_half').css({
+                width: `${(100 / bigbox_brickConstQty) / 2}%`,
+
+            })
+
 
         })
 
+
+    </script>
+    <script>
+        function anyway02_RandNumberXYZ(x, y, z) {
+            let a = Math.random()
+            let b = Math.floor(a * z);
+            let c = true;
+            while (c) {
+                if (b >= x && b <= y) {
+                    c = false;
+                }
+                else {
+                    a = Math.random()
+                    b = Math.floor(a * z);
+                }
+            }
+            return b;
+        }
 
     </script>
 </body>
