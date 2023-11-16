@@ -1,0 +1,1138 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+        $.noConflict();
+        var jQ = jQuery;
+    </script>
+    <style>
+        @keyframes animate_bubble {
+            0% {
+                transform: scale(0);
+                opacity: 0;
+            }
+
+            50% {
+                transform: scale(1.2);
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 0;
+            }
+        }
+
+        @keyframes animate_smoothApper {
+            0% {
+
+                opacity: 0;
+            }
+
+            50% {
+
+                opacity: 0.5;
+            }
+
+            100% {
+
+                opacity: 1;
+            }
+        }
+    </style>
+    <style>
+        body {
+            background-color: #000000;
+
+        }
+
+        #lightBeam {
+
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+            max-width: 1000px;
+            height: 100%;
+
+        }
+
+        #lightBeam_cover {}
+
+        #lightBeam_cover.lightBox_off {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000000;
+            z-index: 2;
+
+
+        }
+
+        #lightBeam_cover.lightBox_on {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000000;
+            z-index: -1;
+
+        }
+
+        #lightBeam_body.lightBox_on {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #f5cd2f;
+            clip-path: polygon(20% 0%, 80% 0%, 100% 90%, 0% 90%);
+            animation: animate_smoothApper 1s ease;
+        }
+
+        #lightBeam_bottom.lightBox_on {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #f5cd2f;
+            clip-path: ellipse(50% 8% at 50% 90%);
+            animation: animate_smoothApper 1s ease;
+
+        }
+
+        #lightBeam_bottom_shadow.lightBox_on {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #4141419a;
+            clip-path: ellipse(37% 3% at 50% 90%);
+            animation: animate_smoothApper 1s ease;
+
+        }
+
+        #lightBox.lightBox_on {
+
+            position: absolute;
+            z-index: 10;
+            top: 50%;
+            right: -2%;
+            background-image: url('./css/img/light/light.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            width: 8%;
+            aspect-ratio: 600 / 600;
+            filter: grayscale(0%);
+
+
+
+        }
+
+        #lightBox.lightBox_on::after {
+
+            content: "";
+            position: absolute;
+            z-index: 9;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background-color: black;
+            opacity: 0.3;
+            -webkit-filter: blur(10px);
+            -webkit-transform: scale(0.7, 0.2);
+
+        }
+
+        #lightBox.lightBox_off {
+
+            position: absolute;
+            z-index: 10;
+            top: 50%;
+            right: -2%;
+            background-image: url('./css/img/light/light.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            width: 8%;
+            aspect-ratio: 600 / 600;
+            filter: grayscale(100%);
+
+
+
+        }
+
+        #lightBox.lightBox_off::after {
+
+            content: "";
+            position: absolute;
+            z-index: 9;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background-color: black;
+            opacity: 0.3;
+            -webkit-filter: blur(10px);
+            -webkit-transform: scale(0.7, 0.2);
+
+        }
+
+        #animationBox_bubble {
+            z-index: 10;
+            position: absolute;
+            top: 65%;
+            left: 81.4%;
+            width: 14%;
+            aspect-ratio: 1/1;
+
+        }
+
+        #animationBox_bubble>.bubble {
+            display: none;
+        }
+
+        #animationBox_bubble>.bubble.animating {
+            z-index: 11;
+            display: block;
+            border: 3px solid #f5cd2f;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            position: absolute;
+            animation: animate_bubble 3s ease infinite;
+
+        }
+
+
+        #scrawlMachine.scrawlMachine_on {
+
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+            max-width: 600px;
+            aspect-ratio: 600 / 813;
+            background-color: transparent;
+            z-index: 10;
+            animation: animate_smoothApper 2s ease-in;
+
+        }
+
+        #scrawlMachine.scrawlMachine_off {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+            max-width: 600px;
+            aspect-ratio: 600 / 813;
+            background-color: transparent;
+            z-index: -1;
+
+        }
+
+
+        #bigbox-bottom-shadow {
+
+            z-index: 9;
+            position: absolute;
+            top: 50%;
+            left: -5%;
+            width: 110%;
+            height: 50%;
+            background-color: rgb(102, 101, 101);
+            clip-path: ellipse(50% 9% at 50% 95.5%);
+        }
+
+        #bigbox {
+            z-index: 9;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            /* background-image: url('./6.jpg'); */
+            background-size: cover;
+            background-repeat: no-repeat;
+            /* border-radius: 15px; */
+            top: 0;
+            bottom: 0;
+            display: flex;
+            border-radius: 5px;
+            /* border: 3px solid black; */
+            justify-content: end;
+            flex-wrap: wrap;
+            overflow: hidden;
+        }
+
+        #bigbox>.bigbox_brick {
+            z-Index: 8;
+            position: relative;
+            box-shadow: inset 0 0 #000000;
+            border-collapse: collapse;
+            box-sizing: border-box;
+        }
+
+        #bigbox>.bigbox_brick.bigbox_brick_normal {
+            aspect-ratio: 4 / 3;
+        }
+
+        #bigbox>.bigbox_brick.bigbox_brick_half {
+            aspect-ratio: 2 / 3;
+        }
+
+        #bigbox>.bigbox_brick.bigbox_brick_odd {
+            background-color: rgba(255, 0, 0, 0.3);
+        }
+
+        #bigbox>.bigbox_brick.bigbox_brick_even {
+            background-color: blue;
+        }
+
+
+
+        #showbox_round {
+            z-index: 10;
+
+            width: 100%;
+            height: 100%;
+            transform: translate3d(0, 0, 0);
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        #showbox {
+
+            z-index: 10;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #8ed7d2;
+            /* From https://css.glass */
+            clip-path: polygon(51% 5%,
+                    /* middle top*/
+                    93% 5%,
+                    /* right top*/
+                    93% 28.5%,
+                    /* right center*/
+                    93% 52%,
+                    /* right bootom*/
+                    51% 52%,
+                    /* middle bootom*/
+                    7% 52%,
+                    /* left bootom*/
+                    7% 28.5%,
+                    /* left center*/
+                    7% 5%);
+            /* left top*/
+
+
+        }
+
+        #crane-box {
+            z-index: 10;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgb(0, 0, 0);
+            /* clip-path: polygon(16% 4.8%, 27% 4.6%, 27% 8%, 16% 8%); */
+            clip-path: polygon(16% 5%, 27% 5%, 27% 8%, 16% 8%);
+
+        }
+
+        #crane-body {
+            z-index: 10;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgb(127, 127, 127);
+            clip-path: polygon(21% 5%, 22% 5%, 22% 25%, 21% 25%);
+            transition: clip-path 0.8s;
+        }
+
+        #crane-hand-top {
+            z-index: 10;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgb(0, 0, 0);
+            clip-path: circle(3% at 21.5% 25%);
+            transition: clip-path 0.8s;
+        }
+
+        #crane-hand-bottom {
+            z-index: 10;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #8ed7d2;
+            clip-path: circle(2% at 21.5% 25%);
+            transition: clip-path 0.8s;
+        }
+
+        #crane-hand-bottom-bottom {
+            z-index: 10;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #8ed7d2;
+            clip-path: circle(2% at 21.5% 27%);
+            transition: clip-path 0.8s;
+        }
+        .consolebox-button{
+            cursor: url('./res/cursor/cursor_hand.cur'), auto;
+        }
+        .consolebox-button:active{
+            cursor: url('./res/cursor/cursor_grabbingHand.cur'), auto;
+        }
+
+        #consolebox-top {
+            z-index: 10;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+
+            background-color: #febabd;
+            clip-path: polygon(30% 54%, 74% 54%, 78% 59%, 24% 59%);
+
+        }
+
+        #consolebox-top::before {
+            z-index: 9;
+            content: "";
+            position: absolute;
+            background-color: #febabd;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            /* Adjust the border width and color as needed */
+            clip-path: polygon(30.3% 54.3%, 73.7% 54.3%, 77.2% 58.7%, 24.8% 58.7%);
+
+        }
+
+        #consolebox-front {
+
+            z-index: 10;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #b2b3b2;
+            /* clip-path: polygon(78% 59%, 24% 59%, 24% 63%, 78% 63%); */
+            clip-path: polygon(24% 59%, 78% 59%, 76% 64%, 26% 64%);
+
+        }
+
+        #consolebox-front::before {
+            z-index: 9;
+            content: "";
+            position: absolute;
+            background-color: #f5f8f5;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+
+            clip-path: polygon(24% 59%, 78% 59%, 75.7% 63.2%, 26.3% 63.2%);
+        }
+
+        #consolebox-bar-body {
+            z-index: 10;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* top: 50%;
+            left: 34%;
+            width: calc(36% - 34%);
+            height: calc(56% - 50%); */
+            background-color: rgb(146, 139, 139);
+            clip-path: polygon(34% 50%, 36% 50%, 36% 56%, 34% 56%);
+
+        }
+
+        #consolebox-bar-body-foot-shadow {
+            z-index: 10;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgb(102, 101, 101);
+            clip-path: ellipse(2% 1% at 35% 56%);
+
+        }
+
+        #consolebox-bar-body-foot {
+            z-index: 10;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgb(146, 139, 139);
+            clip-path: circle(0.9% at 35% 56%);
+
+        }
+
+        #consolebox-bar-body-head {
+            z-index: 10;
+            position: absolute;
+            top: 48%;
+            left: 33%;
+            width: 4%;
+            aspect-ratio: 600 / 600;
+            border-radius: 50%;
+            background-color: rgb(0, 0, 0);
+            /* clip-path: circle(2% at 35% 50%); */
+            cursor: url('./res/cursor/cursor_hand.cur'), auto;
+        }
+
+        #consolebox-bar-body-head:active {
+            cursor: url('./res/cursor/cursor_grabbingHand.cur'), auto;
+        }
+
+        #consolebox-bar-body-head-area {
+            z-index: 10;
+            position: absolute;
+            top: 48%;
+            left: 30.5%;
+            background-color: rgba(255, 0, 0, 0.288);
+            width: calc(9%);
+            height: calc(5%);
+        }
+
+        #consolebox-bar-body-head-shine {
+
+            z-index: 11;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #ffffff;
+            clip-path: ellipse(25% 10% at 52% 12%);
+            transform: rotate(40deg);
+
+        }
+
+        #consolebox-button-foot {
+            z-index: 10;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgb(102, 101, 101);
+            clip-path: ellipse(3% 1% at 65% 57%);
+
+        }
+
+        #consolebox-button-body {
+            z-index: 10;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgb(207, 117, 0);
+            clip-path: polygon(62.5% 55%, 67.5% 55%, 67.5% 57%, 62.5% 57%);
+            transition: clip-path 0.3s;
+
+        }
+
+        #consolebox-button-body-foot {
+            z-index: 10;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgb(207, 117, 0);
+            clip-path: ellipse(2.5% 0.5% at 65% 57%);
+
+        }
+
+        #consolebox-button-head {
+            z-index: 10;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgb(255, 145, 0);
+            clip-path: ellipse(2.5% 0.5% at 65% 55%);
+            transition: clip-path 0.3s;
+        }
+
+        #prize-box-body {
+            z-index: 10;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('./css/img/crawl/iron.jpg');
+            clip-path: polygon(11% 71%, 36% 71%, 36% 88%, 11% 88%);
+
+        }
+
+        #prize-box-body-screw-tl {
+            z-index: 10;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('./css/img/crawl/marble.png');
+            clip-path: circle(0.8% at 12.6% 72.2%);
+
+        }
+
+        #prize-box-body-screw-tr {
+            z-index: 10;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('./css/img/crawl/marble.png');
+            clip-path: circle(0.8% at 34.3% 72.2%);
+
+        }
+
+        #prize-box-body-screw-br {
+            z-index: 10;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('./css/img/crawl/marble.png');
+            clip-path: circle(0.8% at 34.3% 86.7%);
+
+        }
+
+        #prize-box-body-screw-bl {
+            z-index: 10;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('./css/img/crawl/marble.png');
+            clip-path: circle(0.8% at 12.6% 86.7%);
+
+        }
+
+
+        #prize-box-front-body {
+            z-index: 10;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('./css/img/crawl/iron_black_shine.jpg');
+            clip-path: polygon(15% 74%, 32% 74%, 32% 86%, 15% 86%);
+
+        }
+
+        #prize-box-front-top {
+            z-index: 10;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgb(255, 145, 0);
+            clip-path: polygon(15% 74%, 32% 74%, 32% 75.5%, 15% 75.5%);
+
+        }
+
+        #prize-box-front-left {
+            z-index: 10;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgb(255, 145, 0);
+            clip-path: polygon(15% 74%, 17% 74%, 17% 86%, 15% 86%);
+
+        }
+
+        #prize-box-front-right {
+            z-index: 10;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgb(255, 145, 0);
+            clip-path: polygon(30% 74%, 32% 74%, 32% 86%, 30% 86%);
+
+        }
+
+        #prize-box-front-glass {
+            z-index: 10;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+
+
+            opacity: 1;
+            clip-path: polygon(16% 75%, 31% 75%, 31% 86%, 16% 86%);
+
+        }
+
+        #prize-box-front-glass::before {
+            content: "";
+            z-index: 10;
+            position: absolute;
+            top: 75%;
+            left: 16%;
+            width: calc(31% - 16%);
+            height: calc(86% - 75%);
+            background-image: url('./css/img/crawl/glass.png');
+            opacity: 0.6;
+            background-size: 100% 100%;
+            cursor: url('./res/cursor/cursor_prizebox.cur'), auto;
+
+        }
+
+        #coinslot-body {
+            z-index: 10;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('./css/img/crawl/iron.jpg');
+            clip-path: polygon(86% 66%, 92% 66%, 92% 75%, 86% 75%);
+
+        }
+
+        #coinslot-hole {
+            z-index: 10;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('./css/img/crawl/iron_black.jpg');
+            clip-path: polygon(88% 68%, 90% 68%, 90% 74%, 88% 74%);
+
+        }
+
+        #coinslot-hole-head {
+            z-index: 10;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #dddddd;
+            clip-path: polygon(87.5% 67.5%, 90.5% 67.5%, 90.5% 69%, 87.5% 69%);
+            cursor: url('./res/cursor/cursor_coin.cur'), auto;
+        }
+
+        #coinslot-hole::before {
+            content: "";
+            z-index: 20;
+            position: absolute;
+            top: 68%;
+            left: 88%;
+            width: calc(90% - 88%);
+            height: calc(74% - 68%);
+            /* not use now */
+
+            cursor: url('./res/cursor/cursor_coin.cur'), auto;
+        }
+
+        /* #prize-box-back {
+            z-index: 10;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgb(3, 3, 3);
+            clip-path: polygon(15% 75%, 31% 75%, 31% 86%, 15% 86%);
+
+        }
+
+        #prize-box-head-head {
+            z-index: 10;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgb(255, 255, 255);
+            clip-path: ellipse(8% 3% at 23% 75%);
+
+        }
+
+        #prize-box-head-body {
+            z-index: 10;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgb(224, 224, 224);
+            clip-path: polygon(15% 75%, 31% 75%, 31% 78%, 15% 78%);
+
+        }
+
+        #prize-box-head-foot {
+            z-index: 10;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgb(224, 224, 224);
+            clip-path: ellipse(8% 2% at 23% 78%);
+
+        }
+
+        #prize-box-body-foot-shadow {
+            z-index: 10;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgb(151, 149, 149);
+            clip-path: ellipse(8% 1.9% at 23% 86.2%);
+            --clip-path: polygon(30% 87%, 28% 88.5%, 27% 89%, 
+            23% 89.3%, 
+            19% 89%, 18% 88.5%, 16% 87%, 
+            15% 86%, 31% 86%); --
+
+        }
+
+        #prize-box-body-foot {
+            z-index: 10;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgb(224, 224, 224);
+            clip-path: ellipse(8% 1% at 23% 86%);
+            --clip-path: polygon(30% 87%, 28% 88.5%, 27% 89%, 
+            23% 89.3%, 
+            19% 89%, 18% 88.5%, 16% 87%, 
+            15% 86%, 31% 86%); --
+
+        } */
+    </style>
+</head>
+
+<body>
+    <div id="lightBeam">
+        <div id="lightBeam_cover" class="lightBox_off"></div>
+        <div id="lightBeam_body" class="lightBox_off"></div>
+        <div id="lightBeam_bottom" class="lightBox_off"></div>
+        <div id="lightBeam_bottom_shadow" class="lightBox_off"></div>
+        <div id="lightBox" class="lightBox_off">
+
+        </div>
+    </div>
+    <div id="scrawlMachine" class="scrawlMachine_on">
+
+        <!--<div id="bigbox-bottom-shadow"></div>-->
+        <div id="bigbox"> <!-- each brick 6.25% 16s!-->
+        </div>
+        <!--<div id="showbox-back"></div>-->
+        <div id="showbox_round">
+            <div id="showbox"></div>
+        </div>
+
+        <div id="crane-body"></div>
+        <div id="crane-box"></div>
+        <div id="crane-hand-top"></div>
+        <div id="crane-hand-bottom"></div>
+        <div id="crane-hand-bottom-bottom"></div>
+        <div id="consolebox-top"></div>
+        <div id="consolebox-front"></div>
+        <div id="consolebox-bar-body-foot-shadow"></div>
+        <div id="consolebox-bar-body"></div>
+        <div id="consolebox-bar-body-foot"></div>
+        <div id="consolebox-bar-body-head-area"></div>
+        <div id="consolebox-bar-body-head">
+            <div id="consolebox-bar-body-head-shine"></div>
+        </div>
+        <div id="consolebox-button-foot" class="consolebox-button"></div>
+        <div id="consolebox-button-body" class="consolebox-button"></div>
+        <div id="consolebox-button-body-foot" class="consolebox-button"></div>
+        <div id="consolebox-button-head" class="consolebox-button">
+
+        </div>
+
+        <div id="prize-box-body"></div>
+        <div id="prize-box-body-screw-tl"></div>
+        <div id="prize-box-body-screw-tr"></div>
+        <div id="prize-box-body-screw-br"></div>
+        <div id="prize-box-body-screw-bl"></div>
+        <div id="prize-box-front-body"></div>
+        <div id="prize-box-front-top"></div>
+        <div id="prize-box-front-left"></div>
+        <div id="prize-box-front-right"></div>
+        <div id="prize-box-front-glass"></div>
+
+
+        <div id="animationBox_bubble">
+            <div class="bubble animating"></div>
+        </div>
+        <div id="coinslot-body"></div>
+        <div id="coinslot-hole"></div>
+        <div id="coinslot-hole-head"></div>
+    </div>
+
+    <!-- script로 생성 시, 필터 먹이기 힘듦-->
+    <svg style="visibility: hidden; position: absolute;" width="0" height="0" xmlns="http://www.w3.org/2000/svg"
+        version="1.1">
+        <defs>
+            <filter id="round">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur" />
+                <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9"
+                    result="goo" />
+                <feComposite in="SourceGraphic" in2="goo" operator="atop" />
+            </filter>
+        </defs>
+    </svg>
+    <script>
+        const bigbox_brickConstQty = 9;
+        const bigbox_brickColorTables = ["#A5A9B4", "#A0A5A9", "#635F61", "#6C6E68", "#9BA19D", "#D4D5C9", "#958A73", "#E0E0E0", "#D9D9D9"];
+        const bigbox_brickColorTabless = ["#B67B50", "#FBE890", "#FCB76D", "#f5cd2f", "#f0d588", "#F8BB3D", "#FA9C1C", "#FECCCF", "#FEBABD"]
+        const bigbox_brickColorTablesss = ["#B67B50", "#B67B50", "#B67B50", "#f5cd2f", "#f5cd2f", "#f5cd2f", "#FA9C1C", "#FA9C1C", "#FA9C1C"];
+        const bigbox_brickColorTable = ["#FCFCFC", "#FCFCFC", "#FCFCFC", "#F2F3F2", "#F2F3F2", "#F2F3F2", "#f7f9f8", "#f7f9f8", "#f7f9f8"];
+
+        jQ(document).ready(function () {
+            if (true) {
+                let bigboxWidth = jQ('#bigbox').width();
+                let bigboxHeight = jQ('#bigbox').height();
+                let bigbox_brickWidth = 1 / bigbox_brickConstQty; //0.0625
+                let bigbox_brickHeight = ((bigboxWidth * bigbox_brickWidth) / 4) * 3
+                let bigbox_brickQty = Math.floor(bigboxHeight / bigbox_brickHeight)
+
+                for (let i = 1; i <= bigbox_brickQty; i++) {
+                    if (i % 2 == 1) {//odd
+                        for (let o = 1; o <= bigbox_brickConstQty; o++) {
+                            let tempNum = anyway02_RandNumberXYZ(0, 8, 10);
+
+                            let tempText = `<div class='bigbox_brick bigbox_brick_normal bigbox_brick_odd' style='background-color:${bigbox_brickColorTable[tempNum]}'></div>`
+                            jQ('#bigbox').prepend(tempText)
+                        }
+                    } else {//even
+                        for (let o = 1; o <= (bigbox_brickConstQty + 1); o++) {
+                            let tempText = "";
+                            let tempNum = anyway02_RandNumberXYZ(0, 8, 10);
+                            if (o == 1 || o == bigbox_brickConstQty + 1) {
+                                tempText = `<div class='bigbox_brick bigbox_brick_half bigbox_brick_even' style='background-color:${bigbox_brickColorTable[tempNum]}'></div>`
+                            } else {
+                                tempText = `<div class='bigbox_brick bigbox_brick_normal bigbox_brick_even' style='background-color:${bigbox_brickColorTable[tempNum]}'></div>`
+                            }
+                            jQ('#bigbox').prepend(tempText)
+                        }
+                    }
+                }
+                jQ('.bigbox_brick_normal').css({
+                    width: `${100 / bigbox_brickConstQty}%`,
+
+                })
+                jQ('.bigbox_brick_half').css({
+                    width: `${(100 / bigbox_brickConstQty) / 2}%`,
+
+                })
+            }
+            const initialHeadPosition = jQ('#consolebox-bar-body-head').position();
+            var areaMouseIn = false;
+            jQ('#consolebox-bar-body-head').draggable({
+
+                containment: "#consolebox-bar-body-head-area",
+                drag: function (event, ui) {
+                    var position = ui.position;
+                    var leftPercentage = (position.left / jQ('#bigbox').width()) * 100;
+                    var topPercentage = (position.top / jQ('#bigbox').height()) * 100;
+                    jQ('#consolebox-bar-body').css({
+                        clipPath: `polygon(${leftPercentage + 1}% ${topPercentage + 1}%, ${leftPercentage + 1 + 2}% ${topPercentage + 1}%, 36% 56%, 34% 56%)`
+
+                    });
+                    
+
+                }
+            });
+            jQ(document).on('mousehover', '#consolebox-bar-body-head-area', function () {
+                areaMouseIn = true;
+            });
+
+            jQ(document).on('mouseleave', '#consolebox-bar-body-head-area', function () {
+                jQ('#consolebox-bar-body-head').css({
+                    top: `${initialHeadPosition.top}px`,
+                    left: `${initialHeadPosition.left}px`
+
+                })
+                jQ('#consolebox-bar-body').css({
+                    clipPath: `polygon(34% 50%, 36% 50%, 36% 56%, 36% 56%, 34% 56%)`
+
+                })
+            });
+            areaMouseIn = false;
+        })
+
+        jQ(document).on('click', '#coinslot-hole', function () {
+            console.log("test")
+        });
+
+        jQ(document).on('click', '.consolebox-button', function () {
+            jQ('#consolebox-button-body').css({
+                clipPath: `polygon(62.5% 56.5%, 67.5% 56.5%, 67.5% 57%, 62.5% 57%)`
+
+            })
+            jQ('#consolebox-button-head').css({
+                clipPath: `ellipse(2.5% 0.5% at 65% 56.5%)`
+
+            });
+            jQ('#crane-body').css({
+                clipPath: `polygon(21% 5%, 22% 5%, 22% 37%, 21% 37%)`
+
+            });
+            jQ('#crane-hand-top').css({
+                clipPath: `circle(3% at 21.5% 37%)`
+
+            });
+            jQ('#crane-hand-bottom').css({
+                clipPath: `circle(2% at 21.5% 37%)`
+
+            });
+            jQ('#crane-hand-bottom-bottom').css({
+                clipPath: `circle(2% at 21.5% 39%)`
+
+            });
+            setTimeout(function () {
+
+                jQ('#consolebox-button-body').css({
+                clipPath: `polygon(62.5% 55%, 67.5% 55%, 67.5% 57%, 62.5% 57%)`
+
+            });
+            jQ('#consolebox-button-head').css({
+                clipPath: `ellipse(2.5% 0.5% at 65% 55%)`
+
+            });
+            jQ('#crane-body').css({
+                clipPath: `polygon(21% 5%, 22% 5%, 22% 25%, 21% 25%)`
+
+            });
+            jQ('#crane-hand-top').css({
+                clipPath: `circle(3% at 21.5% 25%)`
+
+            });
+            jQ('#crane-hand-bottom').css({
+                clipPath: `circle(2% at 21.5% 25%)`
+
+            });
+            jQ('#crane-hand-bottom-bottom').css({
+                clipPath: `circle(2% at 21.5% 27%)`
+
+            });
+            
+
+            }, 1000);
+
+        });
+        jQ(document).on('click', '#lightBox', function () {
+            jQ(this).toggleClass('lightBox_on');
+            jQ(this).toggleClass('lightBox_off');
+            jQ("#lightBeam_cover").toggleClass('lightBox_on');
+            jQ("#lightBeam_cover").toggleClass('lightBox_off');
+            jQ("#lightBeam_body").toggleClass('lightBox_on');
+            jQ("#lightBeam_body").toggleClass('lightBox_off');
+            jQ("#lightBeam_bottom").toggleClass('lightBox_on');
+            jQ("#lightBeam_bottom").toggleClass('lightBox_off');
+            jQ("#lightBeam_bottom_shadow").toggleClass('lightBox_on');
+            jQ("#lightBeam_bottom_shadow").toggleClass('lightBox_off');
+            jQ('#scrawlMachine').toggleClass('scrawlMachine_off');
+            jQ('#scrawlMachine').toggleClass('scrawlMachine_on');
+            setTimeout(function () {
+
+            }, 500);
+        })
+        jQ(document).on("mouseenter", "#animationBox_bubble", function () {
+            jQ('.bubble').each(function () {
+                jQ(this).removeClass('animating')
+            })
+
+        });
+        jQ(document).on("mouseleave", "#animationBox_bubble", function () {
+            jQ('.bubble').each(function () {
+                jQ(this).addClass('animating')
+            })
+
+        })
+    </script>
+    <script>
+        function anyway02_RandNumberXYZ(x, y, z) {
+            let a = Math.random()
+            let b = Math.floor(a * z);
+            let c = true;
+            while (c) {
+                if (b >= x && b <= y) {
+                    c = false;
+                }
+                else {
+                    a = Math.random()
+                    b = Math.floor(a * z);
+                }
+            }
+            return b;
+        }
+
+    </script>
+</body>
+
+</html>

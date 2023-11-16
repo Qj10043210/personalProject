@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+	integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body>
+    <input type="text" class="cartQty" onkeypress="return isNumber(event)"
+    style="background: none; border: none; padding: 0; box-sizing: border-box; width: 50%"
+    value='${item.cart_qty}' />
+<script>
+    $('.cartQty').bind('mousewheel', function(e){
+        if(e.originalEvent.wheelDelta /120 > 0) {
+            console.log('scrolling up !');
+        }
+        else{
+            console.log('scrolling down !');
+        }
+    });
+</script>
+<script>
+
+    function isNumber(evt) { //<input type="text" onkeypress="return isNumber(event)">
+        evt = (evt) ? evt : window.event;
+        var charCode = (evt.which) ? evt.which : evt.keyCode;
+        if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+            return false;
+        }
+        return true;
+    }
+    $('.cartQty').bind('keyup blur', function () {
+        $(this).val($(this).val().replace(/[^0-9]/g, ''))
+    });
+</script>
+</body>
+</html>

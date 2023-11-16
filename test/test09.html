@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Two Draggable Absolute Divs</title>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <style>
+    #container {
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      border: 1px solid #000;
+      overflow: hidden;
+    }
+
+    .absolute-div {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      background-color: #ccc;
+    }
+
+    #div1 {
+      top: 50px;
+      left: 50px;
+    }
+
+    #div2 {
+      top: 150px;
+      left: 150px;
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    
+  </div>
+  <div class="absolute-div" id="div1"></div>
+    <div class="absolute-div" id="div2"></div>
+
+  <script>
+    $(function () {
+      $(".absolute-div").draggable({
+        containment: "#container", // Restrict dragging to the #container
+        drag: function (event, ui) {
+          var position = ui.position;
+          console.log("Top: " + position.top + ", Left: " + position.left);
+          // You can use position.top and position.left to get the current position
+        }
+      });
+    });
+  </script>
+</body>
+</html>

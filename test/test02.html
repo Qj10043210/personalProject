@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+   var inputString = "(ac, bc, ad)";
+
+// Regular expression to capture 'ac' or 'bc'
+var regex = /(a|b)c/g;
+
+// Apply the regular expression to find all matches
+var resultArray = inputString.match(regex);
+console.log(resultArray)
+console.log(resultArray[0])
+
+// Replace 'ac' or 'bc' with the captured 'a' or 'b' in each element of the array
+var resultStringArray = resultArray.map(function(match) {
+  return match.replace(regex, "$1");
+});
+
+// Join the array into a single string
+//var resultString = resultStringArray.join(", ");
+
+console.log("Input: " + inputString);
+console.log( resultStringArray);
+
+
+let a = rgbToHex("rgb(20,30,20)")
+console.log(a)
+function rgbToHex(tempText) {
+            console.log(tempText)
+            const rgbPattern = /rgb\((\d+), (\d+), (\d+)\)/;
+            const matches = rgbPattern.exec(tempText);
+            console.log(matches)
+            if (matches) {
+                const r = parseInt(matches[1]);
+                const g = parseInt(matches[2]);
+                const b = parseInt(matches[3]);
+                return "#" + ((1 << 24) | (r << 16) | (g << 8) | b).toString(16).slice(1).toUpperCase();
+            }
+            return null;
+        }
+
+</script>
+  </body>
+</html>
