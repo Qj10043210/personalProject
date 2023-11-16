@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script>
+        $.noConflict();
+        var jQ = jQuery;
+    </script>
+
+    <style>
+         body {
+            background-color: #b2b3b2;
+
+        }
+        #parent {
+
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+            max-width: 600px;
+            aspect-ratio: 600 / 813;
+            background-color: #8ed7d2;
+            z-index: 10;
+
+
+        }
+        #bigbox {
+            z-index: 9;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            /* background-image: url('./6.jpg'); */
+            background-size: cover;
+            background-repeat: no-repeat;
+            /* border-radius: 15px; */
+            top: 0;
+            bottom: 0;
+            display: flex;
+            border-radius: 5px;
+            /* border: 3px solid black; */
+            justify-content: end;
+            flex-wrap: wrap;
+            overflow: hidden;
+        }
+        #bigbox>.bigbox_brick {
+            z-Index: 9;
+
+            box-shadow: inset 0 0 #000000;
+            border-collapse: collapse;
+            box-sizing: border-box;
+        }
+
+        #bigbox>.bigbox_brick.bigbox_brick_normal {
+            aspect-ratio: 4 / 3;
+        }
+
+        #bigbox>.bigbox_brick.bigbox_brick_half {
+            aspect-ratio: 2 / 3;
+        }
+
+        #bigbox>.bigbox_brick.bigbox_brick_odd {
+            background-color: rgba(255, 0, 0, 0.3);
+        }
+
+        #bigbox>.bigbox_brick.bigbox_brick_even {
+            background-color: blue;
+        }
+
+        #showbox_round {
+            z-index: 15;
+            filter:url(#round);
+            width: 100%;
+            height: 100%;
+        }
+
+        #showbox {
+
+            z-index: 10;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #00ffee;
+            /* From https://css.glass */
+
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(7.7px);
+            -webkit-backdrop-filter: blur(7.7px);
+            border: 1px solid #8ed7d2;
+            clip-path: polygon(51% 5%,
+                    /* middle top*/
+                    93% 5%,
+                    /* right top*/
+                    93% 28.5%,
+                    /* right center*/
+                    93% 52%,
+                    /* right bootom*/
+                    51% 52%,
+                    /* middle bootom*/
+                    7% 52%,
+                    /* left bootom*/
+                    7% 28.5%,
+                    /* left center*/
+                    7% 5%);
+            /* left top*/
+
+        }
+       
+
+        #crane-box {
+            z-index: 10;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgb(0, 0, 0);
+            /* clip-path: polygon(16% 4.8%, 27% 4.6%, 27% 8%, 16% 8%); */
+            clip-path: polygon(16% 5%, 27% 5%, 27% 8%, 16% 8%);
+
+        }
+
+        #crane-body {
+            z-index: 10;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgb(127, 127, 127);
+            clip-path: polygon(21% 5%, 22% 5%, 22% 30%, 21% 30%);
+
+        }
+
+        #crane-hand-top {
+            z-index: 10;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgb(0, 0, 0);
+            clip-path: circle(3% at 21.5% 30%);
+
+        }
+
+        #crane-hand-bottom {
+            z-index: 10;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #8ed7d2;
+            clip-path: circle(2% at 21.5% 30%);
+
+        }
+
+        #crane-hand-bottom-bottom {
+            z-index: 10;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #8ed7d2;
+            clip-path: circle(2% at 21.5% 32%);
+
+        }
+
+
+        #consolebox-top {
+            z-index: 10;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+
+            background-color: #febabd;
+            clip-path: polygon(30% 54%, 74% 54%, 78% 59%, 24% 59%);
+
+        }
+
+        #consolebox-top::before {
+            z-index: 9;
+            content: "";
+            position: absolute;
+            background-color: #febabd;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            /* Adjust the border width and color as needed */
+            clip-path: polygon(30.3% 54.3%, 73.7% 54.3%, 77.2% 58.7%, 24.8% 58.7%);
+
+        }
+
+        #consolebox-front {
+
+            z-index: 10;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #b2b3b2;
+            /* clip-path: polygon(78% 59%, 24% 59%, 24% 63%, 78% 63%); */
+            clip-path: polygon(24% 59%, 78% 59%, 76% 64%, 26% 64%);
+
+        }
+
+        #consolebox-front::before {
+            z-index: 9;
+            content: "";
+            position: absolute;
+            background-color: #f5f8f5;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+
+            clip-path: polygon(24% 59%, 78% 59%, 75.7% 63.2%, 26.3% 63.2%);
+        }
+
+        #consolebox-bar-body {
+            z-index: 10;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgb(146, 139, 139);
+            clip-path: polygon(34% 50%, 36% 50%, 36% 56%, 34% 56%);
+
+        }
+
+        #consolebox-bar-body-foot-shadow {
+            z-index: 10;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgb(102, 101, 101);
+            clip-path: ellipse(2% 1% at 35% 56%);
+
+        }
+
+        #consolebox-bar-body-foot {
+            z-index: 10;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgb(146, 139, 139);
+            clip-path: circle(0.9% at 35% 56%);
+
+        }
+
+        #consolebox-bar-body-head {
+            z-index: 10;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgb(0, 0, 0);
+            clip-path: circle(2% at 35% 50%);
+
+        }
+
+        #consolebox-bar-body-head::before {
+            content: "";
+            z-index: 10;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #ffffff;
+            clip-path: ellipse(1.2% 0.4% at 36% 50%);
+            transform: rotate(6deg);
+
+        }
+
+        #consolebox-button-foot {
+            z-index: 10;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgb(102, 101, 101);
+            clip-path: ellipse(3% 1% at 65% 57%);
+
+        }
+
+        #consolebox-button-body {
+            z-index: 10;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgb(207, 117, 0);
+            clip-path: polygon(62.5% 55%, 67.5% 55%, 67.5% 57%, 62.5% 57%);
+
+        }
+
+        #consolebox-button-body-foot {
+            z-index: 10;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgb(207, 117, 0);
+            clip-path: ellipse(2.5% 0.5% at 65% 57%);
+
+        }
+
+        #consolebox-button-head {
+            z-index: 10;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgb(255, 145, 0);
+            clip-path: ellipse(2.5% 0.5% at 65% 55%);
+
+        }
+
+        #prize-box-body {
+            z-index: 10;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgb(255, 0, 0);
+            clip-path: polygon(13% 71%, 33% 71%, 33% 90%, 13% 90%);
+
+        }
+
+        #prize-box-back {
+            z-index: 10;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgb(3, 3, 3);
+            clip-path: polygon(15% 75%, 31% 75%, 31% 86%, 15% 86%);
+
+        }
+
+        #prize-box-head-head {
+            z-index: 10;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgb(255, 255, 255);
+            clip-path: ellipse(8% 3% at 23% 75%);
+
+        }
+
+        #prize-box-head-body {
+            z-index: 10;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgb(224, 224, 224);
+            clip-path: polygon(15% 75%, 31% 75%, 31% 78%, 15% 78%);
+
+        }
+
+        #prize-box-head-foot {
+            z-index: 10;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgb(224, 224, 224);
+            clip-path: ellipse(8% 2% at 23% 78%);
+
+        }
+
+        #prize-box-body-foot-shadow {
+            z-index: 10;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgb(151, 149, 149);
+            clip-path: ellipse(8% 1.9% at 23% 86.2%);
+            /* clip-path: polygon(30% 87%, 28% 88.5%, 27% 89%, 
+            23% 89.3%, 
+            19% 89%, 18% 88.5%, 16% 87%, 
+            15% 86%, 31% 86%); */
+
+        }
+
+        #prize-box-body-foot {
+            z-index: 10;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgb(224, 224, 224);
+            clip-path: ellipse(8% 1% at 23% 86%);
+            /* clip-path: polygon(30% 87%, 28% 88.5%, 27% 89%, 
+            23% 89.3%, 
+            19% 89%, 18% 88.5%, 16% 87%, 
+            15% 86%, 31% 86%); */
+
+        }
+    </style>
+</head>
+
+<body>
+    <div id="parent">
+        <div id="bigbox"> <!-- each brick 6.25% 16s!-->
+        </div>
+        <div id="showbox_round"><div id="showbox"></div></div>
+        <div id="crane-body"></div>
+        <div id="crane-box"></div>
+        <div id="crane-hand-top"></div>
+        <div id="crane-hand-bottom"></div>
+        <div id="crane-hand-bottom-bottom"></div>
+        <div id="consolebox-top"></div>
+        <div id="consolebox-front"></div>
+        <div id="consolebox-bar-body-foot-shadow"></div>
+        <div id="consolebox-bar-body"></div>
+        <div id="consolebox-bar-body-foot"></div>
+        <div id="consolebox-bar-body-head"></div>
+        <div id="consolebox-button-foot"></div>
+        <div id="consolebox-button-body"></div>
+        <div id="consolebox-button-body-foot"></div>
+        <div id="consolebox-button-head"></div>
+
+        <div id="prize-box-body"></div>
+        <div id="prize-box-body-foot-shadow"></div>
+        <div id="prize-box-back"></div>
+        <div id="prize-box-back-foot"></div>
+        <div id="prize-box-head-body"></div>
+        <div id="prize-box-head-foot"></div>
+        <div id="prize-box-head-head"></div>
+
+        <div id="prize-box-body-foot"></div>
+    </div>
+    <svg style="visibility: hidden; position: absolute;" width="0" height="0" xmlns="http://www.w3.org/2000/svg"
+        version="1.1">
+        <defs>
+            <filter id="round">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur" />
+                <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9"
+                    result="goo" />
+                <feComposite in="SourceGraphic" in2="goo" operator="atop" />
+            </filter>
+        </defs>
+    </svg>
+    <script>
+        const bigbox_brickConstQty = 9;
+        const bigbox_brickColorTables = ["#A5A9B4", "#A0A5A9", "#635F61", "#6C6E68", "#9BA19D", "#D4D5C9", "#958A73", "#E0E0E0", "#D9D9D9"];
+        const bigbox_brickColorTabless = ["#B67B50", "#FBE890", "#FCB76D", "#f5cd2f", "#f0d588", "#F8BB3D", "#FA9C1C", "#FECCCF", "#FEBABD"]
+        const bigbox_brickColorTablesss = ["#B67B50", "#B67B50", "#B67B50", "#f5cd2f", "#f5cd2f", "#f5cd2f", "#FA9C1C", "#FA9C1C", "#FA9C1C"];
+        const bigbox_brickColorTable = ["#FCFCFC", "#FCFCFC", "#FCFCFC", "#F2F3F2", "#F2F3F2", "#F2F3F2", "#f7f9f8", "#f7f9f8", "#f7f9f8"];
+
+        jQ(document).ready(function () {
+            if(false)
+            {
+            let bigboxWidth = jQ('#bigbox').width();
+            let bigboxHeight = jQ('#bigbox').height();
+            let bigbox_brickWidth = 1 / bigbox_brickConstQty; //0.0625
+            let bigbox_brickHeight = ((bigboxWidth * bigbox_brickWidth) / 4) * 3
+            let bigbox_brickQty = Math.floor(bigboxHeight / bigbox_brickHeight)
+
+            for (let i = 1; i <= bigbox_brickQty; i++) {
+                if (i % 2 == 1) {//odd
+                    for (let o = 1; o <= bigbox_brickConstQty; o++) {
+                        let tempNum = anyway02_RandNumberXYZ(0, 8, 10);
+
+                        let tempText = `<div class='bigbox_brick bigbox_brick_normal bigbox_brick_odd' style='background-color:${bigbox_brickColorTable[tempNum]}'></div>`
+                        jQ('#bigbox').prepend(tempText)
+                    }
+                } else {//even
+                    for (let o = 1; o <= (bigbox_brickConstQty + 1); o++) {
+                        let tempText = "";
+                        let tempNum = anyway02_RandNumberXYZ(0, 8, 10);
+                        if (o == 1 || o == bigbox_brickConstQty + 1) {
+                            tempText = `<div class='bigbox_brick bigbox_brick_half bigbox_brick_even' style='background-color:${bigbox_brickColorTable[tempNum]}'></div>`
+                        } else {
+                            tempText = `<div class='bigbox_brick bigbox_brick_normal bigbox_brick_even' style='background-color:${bigbox_brickColorTable[tempNum]}'></div>`
+                        }
+                        jQ('#bigbox').prepend(tempText)
+                    }
+                }
+            }
+            jQ('.bigbox_brick_normal').css({
+                width: `${100 / bigbox_brickConstQty}%`,
+
+            })
+            jQ('.bigbox_brick_half').css({
+                width: `${(100 / bigbox_brickConstQty) / 2}%`,
+
+            })
+}
+
+        })
+
+
+    </script>
+    <script>
+        function anyway02_RandNumberXYZ(x, y, z) {
+            let a = Math.random()
+            let b = Math.floor(a * z);
+            let c = true;
+            while (c) {
+                if (b >= x && b <= y) {
+                    c = false;
+                }
+                else {
+                    a = Math.random()
+                    b = Math.floor(a * z);
+                }
+            }
+            return b;
+        }
+
+    </script>
+</body>
+
+</html>

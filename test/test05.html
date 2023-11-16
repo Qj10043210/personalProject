@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+.info {
+    display: grid;
+	grid-template-columns: repeat(6, 1fr);
+	gap: 5% 1%;
+}
+/* Target the B items and make them span the full width */
+#section_wrap .mallBookList ul li>.info p:nth-child(1),
+#section_wrap .mallBookList ul li>.info p:nth-child(2),
+#section_wrap .mallBookList ul li>.info p:nth-child(3),
+#section_wrap .mallBookList ul li>.info p:nth-child(4){
+    grid-column: span 3;
+}
+#section_wrap .mallBookList ul li>.info p:nth-child(5),
+#section_wrap .mallBookList ul li>.info p:nth-child(6),
+#section_wrap .mallBookList ul li>.info p:nth-child(7){
+    grid-column: span 2;
+}
+
+/* Style for the B elements */
+
+
+
+    </style>
+
+</head>
+
+<body>
+    <div class="info">
+        <p>Q1</p>
+        <p>Q2</p>
+        <p>Q3</p>
+        <p>Q4</p>
+        <p>Q5</p>
+        <p>Q6</p>
+        <p>Q7</p>
+      </div>
+</body>
+</html>
