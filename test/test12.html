@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loop</title>
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+</head>
+<body>
+    <script>
+        for(let i =0; i<=100;i++){
+            let tow = (20+50*(i/100)).toFixed(2)
+            let toe = (30+50*(i/100)).toFixed(2)
+
+            let too = (0+80*(i/100)).toFixed(2)
+            let tos = (20+80*(i/100)).toFixed(2)
+            let String = `<p> ${i}% { clip-path: polygon(${tow}% 0%, ${toe}% 0%, ${tos}% 90%, ${too}% 90%); }</p>`
+            $('body').append(String)
+        }
+    </script>
+    <!-- <script>
+        for(let i =0; i<=100;i++){
+            let too = (10+80*(i/100)).toFixed(2)
+            let String = `<p>${i}% { clip-path: ellipse(10% 2% at ${too}% 90%); }</p>`
+            $('body').append(String)
+        }
+    </script> -->
+</body>
+</html>

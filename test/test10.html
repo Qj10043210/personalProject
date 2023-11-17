@@ -4,12 +4,27 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
+   html {
+  
+  animation: animateCursor 1s steps(5) infinite;
+}
+@keyframes animateCursor {
+  0% { cursor: url('./css/cur/cursor1.cur'), auto; }
+  20% { cursor: url('./css/cur/cursor2.cur'), auto; }
+  40% { cursor: url('./css/cur/cursor3.cur'), auto; }
+  60% { cursor: url('./css/cur/cursor4.cur'), auto; }
+  80% { cursor: url('./css/cur/cursor5.cur'), auto; }
+  100% { cursor: url('./css/cur/cursor1.cur'), auto; }
+}
+
+
     .warp-element {
-      width: 200px;
-      height: 100px;
-      background-color: #3498db;
-      margin: 50px;
-      transform: skewY(10deg);
+      width: 32px;
+      height: 32px;
+      background-image: url(./13.png);
+      background-position: 0 0;
+      background-size: cover;
+      
     }
   </style>
 </head>
