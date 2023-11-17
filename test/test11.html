@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Distorted Rectangle</title>
+  <style>
+    @keyframes animate_scrwalMachine_prize_fliper {
+    0%{
+        transform: skewX(0deg)
+    }
+    100%{
+        transform: skewX(50deg) scaleX(0.8) scaleY(0.8)
+    }
+}
+    #distortedRectangle {
+      width: 200px;
+      height: 150px;
+      background-color: #3498db;
+      margin: 50px;
+      transform-origin: left top;
+      animation: animate_scrwalMachine_prize_fliper 3s ease infinite;
+    }
+  </style>
+</head>
+<body>
+  <div id="distortedRectangle"></div>
+</body>
+</html>
