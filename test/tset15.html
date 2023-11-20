@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Div Centers with jQuery</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <style>
+        #parentDiv {
+            position: relative;
+            width: 400px;
+            height: 200px;
+            background-color: #eee;
+        }
+
+        .childDiv {
+            position: absolute;
+            width: 100px;
+            height: 50px;
+            background-color: lightblue;
+        }
+
+        #div1 {
+            top: 50px;
+            left: 50px;
+        }
+
+        #div2 {
+            top: 100px;
+            left: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div id="parentDiv">
+        <div id="div1" class="childDiv"></div>
+        <div id="div2" class="childDiv"></div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            // Get div elements
+            var div1 = $('#div1');
+            var div2 = $('#div2');
+
+            // Get dimensions of parent div
+            var parentDivRect = $('#parentDiv').offset();
+
+            // Calculate center coordinates for each div
+            var div1CenterX = parentDivRect.left + div1.position().left + div1.width() / 2;
+            var div1CenterY = parentDivRect.top + div1.position().top + div1.height() / 2;
+
+            var div2CenterX = parentDivRect.left + div2.position().left + div2.width() / 2;
+            var div2CenterY = parentDivRect.top + div2.position().top + div2.height() / 2;
+
+            console.log('Center of div1:', div1CenterX, div1CenterY);
+            console.log('Center of div2:', div2CenterX, div2CenterY);
+        });
+    </script>
+</body>
+</html>
