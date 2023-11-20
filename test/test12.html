@@ -9,6 +9,27 @@
 </head>
 <body>
     <script>
+        for(let i =0; i<=50;i++){
+            let tow = (100-100*(i/50)).toFixed(2)
+            let toe = (30+50*(i/100)).toFixed(2)
+
+            let too = (0+80*(i/100)).toFixed(2)
+            let tos = (20+80*(i/100)).toFixed(2)
+            
+            let String = `<p> ${i}% { transform : scaleY(${tow}%); }</p>`
+            $('body').append(String)
+        }
+        for(let i =0; i<=50;i++){
+            let tow = (100*(i/50)).toFixed(2)
+            let toe = (4*(i/50)).toFixed(2)
+            
+            
+            
+            let String = `<p> ${i+50}% { transform : scaleY(-${tow}%); box-shadow: inset 4px 4px 1px 0px black, inset -4px 4px 1px 0px black, inset -${toe}px -${toe}px 1px 0px black, inset ${toe}px -${toe}px 1px 0px black; }</p>`
+            $('body').append(String)
+        }
+    </script>
+    <!-- <script>
         for(let i =0; i<=100;i++){
             let tow = (20+50*(i/100)).toFixed(2)
             let toe = (30+50*(i/100)).toFixed(2)
@@ -18,7 +39,7 @@
             let String = `<p> ${i}% { clip-path: polygon(${tow}% 0%, ${toe}% 0%, ${tos}% 90%, ${too}% 90%); }</p>`
             $('body').append(String)
         }
-    </script>
+    </script> -->
     <!-- <script>
         for(let i =0; i<=100;i++){
             let too = (10+80*(i/100)).toFixed(2)
