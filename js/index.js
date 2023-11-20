@@ -5,13 +5,22 @@ const bigbox_brickColorTables = ["#A5A9B4", "#A0A5A9", "#635F61", "#6C6E68", "#9
 const bigbox_brickColorTabless = ["#B67B50", "#FBE890", "#FCB76D", "#f5cd2f", "#f0d588", "#F8BB3D", "#FA9C1C", "#FECCCF", "#FEBABD"]
 const bigbox_brickColorTablesss = ["#B67B50", "#B67B50", "#B67B50", "#f5cd2f", "#f5cd2f", "#f5cd2f", "#FA9C1C", "#FA9C1C", "#FA9C1C"];
 const bigbox_brickColorTable = ["#FCFCFC", "#FCFCFC", "#FCFCFC", "#F2F3F2", "#F2F3F2", "#F2F3F2", "#f7f9f8", "#f7f9f8", "#f7f9f8"];
-const musicPlay01_url = "../res/music/Internet Cafe.mp3"
+const musicPlay01_url = "./res/music/Internet Cafe.mp3"
 const musicPlay01 = new Audio(musicPlay01_url);
-
-const musicPlay02_url = "../res/music/imgood.mp3"
+const musicPlay02_url = "./res/music/imgood.mp3"
 const musicPlay02 = new Audio(musicPlay02_url);
-const sePlay01_url = "../res/se/SE_book.mp3"
+const musicPlay03_url = "./res/music/001.mp3"
+const musicPlay03 = new Audio(musicPlay03_url);
+const musicPlay04_url = "./res/music/002.mp3"
+const musicPlay04 = new Audio(musicPlay04_url);
+
+const sePlay01_url = "./res/se/SE_book.mp3"
 const sePlay01 = new Audio(sePlay01_url);
+const sePlay02_url = "./res/se/SE_Spinning.mp3"
+const sePlay02 = new Audio(sePlay02_url);
+const sePlay03_url = "./res/se/SE_Zip.mp3"
+const sePlay03 = new Audio(sePlay03_url);
+
 var musicPlay = -1;
 jQ(document).ready(function () {
     if (true) {
@@ -102,6 +111,7 @@ jQ(document).ready(function () {
     jQ('#lightBox_String_tip').on('mousedown', function () {
         // Handle mouseenter event
         areaMouseInLightString = true;
+        
         jQ('#lightBox_String_tip').draggable({
 
             containment: "#lightBox_String",
@@ -114,8 +124,10 @@ jQ(document).ready(function () {
                     clipPath: `polygon(0% 0%, 100% 7%,${100}% ${topPercentage + 5}%, ${0}% ${topPercentage + 5}%)`
 
                 });
-
-
+                sePlay03.volume= 0.5;
+                sePlay03.loop =true;
+                sePlay03.play();
+                
             }
         })
     });
@@ -133,10 +145,13 @@ jQ(document).ready(function () {
             });
             jQ('#insertCoin').fadeIn(300);
             jQ('#insertCoin').fadeOut(800);
+            
             areaMouseInConsoleBoxHead = false;
         };
         if (areaMouseInLightString) {
+            sePlay03.pause();
             if (locationOfLightString > 50) {
+                sePlay03.pause();
                 sePlay01.play();
                 jQ('#lightBox.lightBox_off').addClass("light_Acchonburike");
                 setTimeout(function () {
@@ -163,6 +178,10 @@ jQ(document).ready(function () {
                         jQ("#lightBeam_musicOption").toggleClass('lightBox_off');
                         jQ('#scrawlMachine').toggleClass('scrawlMachine_off');
                         jQ('#scrawlMachine').toggleClass('scrawlMachine_on');
+                        jQ("#lightBeam_musicOptionBack").toggleClass('lightBox_on');
+                        jQ("#lightBeam_musicOptionBack").toggleClass('lightBox_off');
+                        jQ("#lightBeam_animateOptionBack").toggleClass('lightBox_on');
+                        jQ("#lightBeam_animateOptionBack").toggleClass('lightBox_off');
                         setTimeout(function () {
                             jQ('#lightBeam_bottom_shadow.lightBox_on').css({
                                 backgroundColor: `#4141419a`
@@ -222,7 +241,9 @@ jQ(document).ready(function () {
             //33 middle
             var topPercentage = (position.top / jQ('#lightBeam_musicOption_volum').height()) * 100;
             console.log(leftPercentage)
-            musicPlay01.volume = (leftPercentage / 83);
+            
+            musicPlay03.volume = (Math.abs(leftPercentage) / 83);
+            musicPlay04.volume = (Math.abs(leftPercentage) / 83);
             jQ('#lightBeam_musicOption_volum_bar').css({
                 clipPath: `polygon(0% 0%, ${leftPercentage + 8}% 0%, ${leftPercentage + 8}% 100%, 0% 100%`
     
@@ -322,12 +343,22 @@ jQ(document).on('click', "#lightBeam_animateOption", function () {
 jQ(document).on('click', "#lightBeam_musicOption", function () {
     jQ(this).toggleClass('lightBeam_musicOption_off');
     jQ(this).toggleClass('lightBeam_musicOption_on');
+    let randomNum = anyway02_RandNumberXYZ(3,4,10);
+    let musicPlayMA=null;
+    if(randomNum==3){
+        musicPlayMA = musicPlay03;
+    }else{
+        musicPlayMA = musicPlay04;
+    }
     if (musicPlay < 0) {
         
-        musicPlay01.loop =true;
-        musicPlay01.play();
+        musicPlayMA.loop =true;
+        musicPlayMA.play();
     } else {
-        musicPlay01.pause();
+        musicPlay03.pause();
+        musicPlay04.pause();
+        musicPlay03.currentTime = 0;
+        musicPlay04.currentTime = 0;
     }
     // if(musicPlay < 0 ){
     //     musicPlay02.play();
@@ -338,7 +369,9 @@ jQ(document).on('click', "#lightBeam_musicOption", function () {
 
 })
 
-
+jQ(document).on('click', "#coinslot-hole", function(){
+    window.location.href = './inner.html';
+})
 
 
 

@@ -5,15 +5,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>ClawMachine</title>
+    <link rel="icon" type="image/x-icon" href="./css/img/icon/icon_favi.png">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script src="./js/index.js">
-        
-
-    </script>
-    
+    <script src="./js/index.js"></script>
+    <link rel="stylesheet" href="./css/keyframe.css"/>
     <link rel="stylesheet" href="./css/index.css"/>
 </head>
 
@@ -30,14 +28,17 @@
                 <div id="lightBox_String_tip"></div>
             </div>
         </div>
+        <div id="lightBeam_animateOptionBack" class="lightBox_off"></div>
         <div id="lightBeam_animateOption" class="lightBox_off lightBeam_animateOption_off"></div>
+        <div id="lightBeam_musicOptionBack" class="lightBox_off"></div>
         <div id="lightBeam_musicOption" class="lightBox_off lightBeam_musicOption_off"></div>
         <div id="lightBeam_musicOption_volum">
-            <div id="lightBeam_musicOption_volum_bar"></div>
+            <div id="lightBeam_musicOption_volum_bar">volum</div>
             <div id="lightBeam_musicOption_volum_button"></div>
         </div>
 
-    </div>
+    </div> 
+    
     <div id="scrawlMachine" class="scrawlMachine_off">
 
         <!--<div id="bigbox-bottom-shadow"></div>-->
@@ -93,7 +94,8 @@
         <div id="coinslot-hole"></div>
         <div id="coinslot-hole-head"></div>
     </div>
-
+    <div id="scrawlMachineBack"></div>
+    <div id="scrawlMachineBack2"></div>
     <!-- script로 생성 시, 필터 먹이기 힘듦-->
     <svg style="visibility: hidden; position: absolute;" width="0" height="0" xmlns="http://www.w3.org/2000/svg"
         version="1.1">

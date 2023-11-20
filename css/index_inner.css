@@ -1,0 +1,395 @@
+body {
+    background-color: #bec3c3;
+    animation: animate_box_loading2 ease 10s forwards;    
+}
+
+#weregoing {
+    position: absolute;   
+    transform: translateY(-10%);
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    max-width: 900px;
+    aspect-ratio: 800 / 600;
+    background-color: transparent;
+    /* background-image: url('./img/backgroundAll/wereGoing.gif'); */
+    background-size: contain;
+    background-repeat: no-repeat;
+    z-index: 50;
+    animation : animate_box_loading ease 10s forwards
+}
+
+#mainInnerBox {
+    position: absolute;
+    transform: translateY(10%);
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    max-width: 800px;
+    aspect-ratio: 800 / 400;
+    background-color: transparent;
+    z-index: 10;
+}
+#mainInnerBox_Floor{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('./img/inner/floor/in_floor_grass.png');
+    
+    z-index: 10;
+}
+#mainInnerBox_Wall_Back{
+    position: absolute;
+    top: -30%;
+    left: 0;
+    width: 100%;
+    height: 30%;
+    z-index: 10;
+    background-image: url('./img/inner/wall/in_back_floor2.png');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    border-bottom: 3px solid black;
+    box-shadow: 3px 3px 20px 5px black;
+}
+#mainInnerBox_Wall_Right_Top{
+    position: absolute;
+    top: -30%;
+    right: 0%;
+    width: 3%;
+    height: 30%;
+    z-index: 10;
+    background-image: url('./img/inner/wall/in_wall_darker.png');
+    background-position: 0% 0%;
+   
+    
+}
+#mainInnerBox_Wall_Right_Bottom{
+    position: absolute;
+    top: 0%;
+    right: 0%;
+    width: 3%;
+    height: 100%;
+    z-index: 10;
+    background-image: url('./img/inner/wall/in_wall_darker.png');
+    box-shadow: -4px 14px 20px 0px black;
+    
+    background-position: 0% 30%;
+    
+}
+#mainInnerBox_Wall_Left_Top{
+    position: absolute;
+    top: -30%;
+    left: 0%;
+    width: 3%;
+    height: 30%;
+    z-index: 10;
+    background-image: url('./img/inner/wall/in_wall_darker.png');
+    background-position: 30% 0%;
+    
+    
+}
+#mainInnerBox_Wall_Left_Bottom{
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 3%;
+    height: 100%;
+    z-index: 10;
+    background-image: url('./img/inner/wall/in_wall_darker.png');
+    box-shadow: 4px 14px 20px 0px black;
+   
+    background-position: 30% 30%;
+    
+}
+#mainInnerBox_Wall_Left_Front{
+    position: absolute;
+    bottom: 0%;
+    left : 0%;
+    height: 25%;
+    width: 35%;
+    z-index: 10;
+    background-image: url('./img/inner/wall/in_wall_darkest.png');
+    filter: brightness(100%) blur(0.5px);
+    box-shadow: 4px -2px 20px 0px #2b2828;
+}
+#mainInnerBox_Wall_Left_Front_Top{
+    position: absolute;
+    top:-21.43%;
+    left: 0%;
+    width: 100%;
+    height: 21.43%;
+    z-index: 11;
+    background-image: url('./img/inner/wall/in_wall_dark.png');
+    background-position: 30% 30%;
+    filter: brightness(110%) blur(1px);
+    clip-path: polygon(8.5% 0%, 100% 0%, 100% 100%, 0% 100%);
+}
+#mainInnerBox_Wall_Right_Front{
+    position: absolute;
+    bottom: 0%;
+    right : 0%;
+    height: 25%;
+    width: 35%;
+    z-index: 10;
+    background-image: url('./img/inner/wall/in_wall_darkest.png');
+    background-position: 30% 30%;
+    filter: brightness(100%)  blur(0.5px);
+    box-shadow: -4px -2px 20px 0px #2b2828;
+
+}
+#mainInnerBox_Wall_Right_Front_Top{
+    position: absolute;
+    top:-21.43%;
+    right: 0%;
+    width: 100%;
+    height: 21.43%;
+    z-index: 11;
+    background-image: url('./img/inner/wall/in_wall_dark.png');
+    background-position: 30% 30%;
+    filter: brightness(110%)  blur(0.5px);
+    clip-path: polygon(0% 0%, 91.5% 0%, 100% 100%, 0% 100%);
+}
+#mainInnerBox_Wall_Left_Front_Menu{
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left:0;
+    right: 0;
+    margin: auto;
+    width: 85%;
+    aspect-ratio: 60/23;
+    z-index: 11;
+    background-image: url('./img/inner/wall/in_wall_menu.png');
+
+}
+.mainInnerBox_Wall_Left_Front_Menu_scraw{
+    position: absolute;
+    width: 5%;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    background: rgb(80,80,80);
+    background: linear-gradient(137deg, rgba(80,80,80,1) 0%, rgba(255,255,255,0.7791491596638656) 100%);
+    border: 1px solid black;
+}
+.mainInnerBox_Wall_Left_Front_Menu_scraw:nth-child(1){
+    top: 5%;
+    left: 2%;
+}
+.mainInnerBox_Wall_Left_Front_Menu_scraw:nth-child(2){
+    top: 5%;
+    right: 2%;
+}
+.mainInnerBox_Wall_Left_Front_Menu_scraw:nth-child(3){
+    bottom: 9%;
+    left: 2%;
+}
+.mainInnerBox_Wall_Left_Front_Menu_scraw:nth-child(4){
+    bottom: 9%;
+    right: 2%;
+}
+.mainInnerBox_Wall_Left_Front_Menu_button{
+    position: absolute;
+    width: 20%;
+    aspect-ratio: 1/1;
+    z-index: 12;
+    background-size: contain;
+    background-repeat: no-repeat;
+    border-radius: 5px;
+    box-shadow: 1px 1px 6px 0px black;
+    
+}
+.button_focusing{
+    animation: animate_box_button_bright 1s ease infinite;
+}
+.mainInnerBox_Wall_Left_Front_Menu_button.button_unactive{
+    filter: brightness(80%);
+}
+#mainInnerBox_Wall_Left_Front_Menu_one{
+    background-image: url('./img/icon/icon_1.png');
+    top:21%;
+    left:6%;
+    cursor: none;
+}
+#mainInnerBox_Wall_Left_Front_Menu_right{
+    background-image: url('./img/icon/icon_right.png');
+    top:21%;
+    left:27%;
+    cursor: pointer;
+}
+#mainInnerBox_Wall_Left_Front_Menu_two{
+    background-image: url('./img/icon/icon_2.png');
+    top:21%;
+    right:27%;
+    cursor: none;
+}
+#mainInnerBox_Wall_Left_Front_Menu_bottom{
+    background-image: url('./img/icon/icon_bottom.png');
+    top:21%;
+    right:6%;
+    cursor: pointer;
+}
+#mainInnerBox_Front_Menu{
+    position: absolute;
+    z-index: 11;
+    bottom: 0%;
+    left: 40%;
+    width: 20%;
+    aspect-ratio: 3/2;
+    
+}
+.mainInnerBox_Front_Menu_button{
+    position: absolute;
+    z-index: 12;
+    width: 40%;
+    aspect-ratio: 1/1;
+    background-size: contain;
+    background-repeat: no-repeat;
+    box-shadow: 5px 5px 4px 0px black, -5px 5px 4px 0px black;
+    cursor: pointer;
+}
+#mainInnerBox_Front_Menu_undo{
+    top: 20%;
+    left: 5%;
+    background-image: url('./img/icon/icon_pres_return.png');
+
+}
+#mainInnerBox_Front_Menu_check{
+    top: 20%;
+    right: 5%;
+    background-image: url('./img/icon/icon_pres_check.png');
+}
+
+#mainInnerBox_Box_Body{
+    position: absolute;
+    top:15%;
+    left:10%;
+    width: 17%;
+    aspect-ratio: 100/75;
+    background-image: url(./img/inner/wall/in_wall_darkest.png);
+    
+    
+    z-index: 11;
+}
+#mainInnerBox_Box_Body::before{
+    content: "";
+    width: 90%;
+    aspect-ratio: 100/75;
+    position: absolute;
+    top: 6%;
+    left: 5%;
+    background-image: url(./img/inner/box/in_box_shadow.png);
+    z-index: 12;
+    background-size: contain;
+    background-position: 0% 0%;
+}
+#mainInnerBox_Box_Body::after{
+    content: "";
+    width: 90%;
+    aspect-ratio: 100/75;
+    position: absolute;
+    top: 6%;
+    left: 5%;
+    z-index: 11;
+    background-image: url(./img/inner/box/box_front_b.png);
+    background-size: contain;
+    background-position: 0% 0%;
+    filter: blur(0.3px);
+    
+}
+#mainInnerBox_Box_Body_Outter{
+    position: absolute;
+    top:100%;
+    left:0%;
+    width: 100%;
+    aspect-ratio: 100/48;    
+    background-image: url(./img/inner/box/box_front.png);
+    z-index: 11;
+    background-size: contain;
+    background-position: 0% 0%;
+    filter: blur(0.5px);
+    box-shadow: 1px 13px 20px 2px black;
+}
+#mainInnerBox_Box_Head{
+    position: absolute;
+    top:-100%;
+    left:0%;
+    width: 100%;
+    aspect-ratio: 100/75;
+    background-image: url(./img/inner/box/box_front.png);
+    background-size: contain;
+    background-position: 0% 0%;
+    z-index: 11;
+    box-shadow: inset 4px 4px 1px 0px black, inset -4px 4px 1px 0px black;
+    transform-origin: bottom;
+    /* animation: animate_box_top 2s  ease-out forwards; */
+    z-index: 13;
+}
+#mainInnerBox_Box_Head::after{
+    content: "";
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    background-image: url(./img/inner/box/in_box_shadow.png);
+    z-index: 12;
+    background-size: contain;
+    background-position: 0% 0%;
+    opacity: 0.6;
+    animation: animate_box_top_opa 3s  ease-out forwards;
+}
+#mainInnerBox_Claw_Shadow{
+    position: absolute;
+    z-index: 30;
+    top: 15%;
+    left:39%;
+    width: 11%;
+    aspect-ratio: 2/1;
+    background: rgb(0,0,0);
+    background: radial-gradient(circle, rgba(0,0,0,0.3) 0%, rgba(20,20,20,1) 100%);
+    border-radius: 40%;
+    transition: left 0.3s, top 0.3s;
+}
+#mainInnerBox_Claw{
+    position: absolute;
+    z-index: 30;
+    top:-45%;
+    left: 37%;
+    width: 15%;
+    aspect-ratio: 511/401;
+    background-image: url('./img/inner/claw/claw.png');
+    background-size: contain;
+    transition: left 0.3s, top 0.1s;
+}
+
+#mainInnerBox_Content_Area{
+    position: absolute;
+    top: 5%;
+    right: 5%;
+    width: 60%;
+    height: 64%;
+    /* background-color: red; */
+    z-index: 11;
+}
+
+.mainInnerBox_Content_Area_Items{
+    position: absolute;
+    width: 15%;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    z-index: 15;
+    
+}
+
+#mainInnerBox_Content_Area_Item_A{
+    top: 19%;
+    left: 28%;
+    background-color: chartreuse;
+    
+}
