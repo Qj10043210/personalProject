@@ -16,8 +16,7 @@ const musicPlay04 = new Audio(musicPlay04_url);
 
 const sePlay01_url = "./res/se/SE_book.mp3"
 const sePlay01 = new Audio(sePlay01_url);
-const sePlay02_url = "./res/se/SE_Spinning.mp3"
-const sePlay02 = new Audio(sePlay02_url);
+
 const sePlay03_url = "./res/se/SE_Zip.mp3"
 const sePlay03 = new Audio(sePlay03_url);
 

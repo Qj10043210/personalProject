@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,13 +9,16 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    
-    <link rel="stylesheet" href="./css/keyframe.css"/>
-    <link rel="stylesheet" href="./css/index_inner.css"/>
+
+    <link rel="stylesheet" href="./css/keyframe.css" />
+    <link rel="stylesheet" href="./css/index_inner.css" />
     <title>Inner</title>
 </head>
+
 <body>
+
     <div id="weregoing"></div>
+    <div id="serverStatus"></div>
     <div id="mainInnerBox">
         <div id="mainInnerBox_Floor"></div>
         <div id="mainInnerBox_Wall_Back"></div>
@@ -25,21 +29,34 @@
         <div id="mainInnerBox_Box_Body">
             <div id="mainInnerBox_Box_Body_Outter"></div>
             <div id="mainInnerBox_Box_Head"></div>
-        </div>        
-        
-        <div id="mainInnerBox_Content_Area">
-            <div class="mainInnerBox_Content_Area_Items" id="mainInnerBox_Content_Area_Item_A">A</div>
-            <!-- <div class="mainInnerBox_Content_Area_Items" id="mainInnerBox_Content_Area_Item_B"></div>
-            <div class="mainInnerBox_Content_Area_Items" id="mainInnerBox_Content_Area_Item_C"></div>
-            <div class="mainInnerBox_Content_Area_Items" id="mainInnerBox_Content_Area_Item_D"></div> -->
         </div>
-        <div id="mainInnerBox_Claw_Shadow">
-            
-        </div>
+
+        <div id="mainInnerBox_Content_Area"></div>
+        <div class="mainInnerBox_Content_Area_Items" id="mainInnerBox_Content_Area_Item_A"
+            data-url="https://developer.mozilla.org/en-US/docs/Learn/HTML/Howto/Use_data_attributes"
+            data-sitename="mozila"></div>
+        <div class="mainInnerBox_Content_Area_Items" id="mainInnerBox_Content_Area_Item_B" data-url="https://naver.com"
+            data-sitename="네이버"></div>
+        <div class="mainInnerBox_Content_Area_Items" id="mainInnerBox_Content_Area_Item_C"
+            data-url="https://jillina10043210.github.io/ColorBank/" data-sitename="ColorBank"></div>
+        <div class="mainInnerBox_Content_Area_Items" id="mainInnerBox_Content_Area_Item_D"
+            data-url="https://jillina10043210.github.io/FontBank/" data-sitename="FontBank"></div>
+        <div id="mainInnerBox_Claw_Shadow"></div>
         <div id="mainInnerBox_Claw"></div>
         <div id="mainInnerBox_Wall_Right_Front">
-          <div id="mainInnerBox_Wall_Right_Front_Top"></div>
-          
+            <div id="mainInnerBox_Wall_Right_Front_Top"></div>
+            <div id="mainInnerBox_Wall_Right_Front_Menu">
+                <div class="mainInnerBox_Wall_Right_Front_Menu_scraw"></div>
+                <div class="mainInnerBox_Wall_Right_Front_Menu_scraw"></div>
+                <div class="mainInnerBox_Wall_Right_Front_Menu_scraw"></div>
+                <div class="mainInnerBox_Wall_Right_Front_Menu_scraw"></div>
+                <div id="mainInnerBox_musicOptionBack"></div>
+                <div id="mainInnerBox_musicOption" class="mainInnerBox_musicOption_off"></div>
+                <div id="mainInnerBox_musicOption_volum">
+                    <div id="mainInnerBox_musicOption_volum_bar">volum</div>
+                    <div id="mainInnerBox_musicOption_volum_button"></div>
+                </div>
+            </div>
         </div>
         <div id="mainInnerBox_Wall_Left_Front">
             <div id="mainInnerBox_Wall_Left_Front_Top"></div>
@@ -48,17 +65,36 @@
                 <div class="mainInnerBox_Wall_Left_Front_Menu_scraw"></div>
                 <div class="mainInnerBox_Wall_Left_Front_Menu_scraw"></div>
                 <div class="mainInnerBox_Wall_Left_Front_Menu_scraw"></div>
-                <div id="mainInnerBox_Wall_Left_Front_Menu_one" class="mainInnerBox_Wall_Left_Front_Menu_button button_focusing" ></div>
-                <div id="mainInnerBox_Wall_Left_Front_Menu_right"  class="mainInnerBox_Wall_Left_Front_Menu_button button_focusing"></div>
-                <div id="mainInnerBox_Wall_Left_Front_Menu_two" class="mainInnerBox_Wall_Left_Front_Menu_button button_unactive"></div>
-                <div id="mainInnerBox_Wall_Left_Front_Menu_bottom"  class="mainInnerBox_Wall_Left_Front_Menu_button button_unactive"></div>                
+                <div id="mainInnerBox_Wall_Left_Front_Menu_one"
+                    class="mainInnerBox_Wall_Left_Front_Menu_button button_focusing"></div>
+                <div id="mainInnerBox_Wall_Left_Front_Menu_right"
+                    class="mainInnerBox_Wall_Left_Front_Menu_button button_focusing"></div>
+                <div id="mainInnerBox_Wall_Left_Front_Menu_two"
+                    class="mainInnerBox_Wall_Left_Front_Menu_button button_unactive"></div>
+                <div id="mainInnerBox_Wall_Left_Front_Menu_bottom"
+                    class="mainInnerBox_Wall_Left_Front_Menu_button button_unactive"></div>
             </div>
         </div>
         <div id="mainInnerBox_Front_Menu">
             <div id="mainInnerBox_Front_Menu_undo" class="mainInnerBox_Front_Menu_button"></div>
             <div id="mainInnerBox_Front_Menu_check" class="mainInnerBox_Front_Menu_button"></div>
         </div>
+        <div id="messageBox">
+            <div id="messageBox_TextArea">
+                <span id="messageBox_TextArea_Message"> Wanna go to...</span>
+                <span id="messageBox_TextArea_Direction">naddd</span>
+            </div>
+            <div id="messageBox_Buttons">
+                <div id="messageBox_No" class="messageBox_Button">
+                    <div id="messageBox_No_inner" class="messageBox_Button_Inner"></div>
+                </div>
+                <div id="messageBox_Yes" class="messageBox_Button">
+                    <div id="messageBox_Yes_inner" class="messageBox_Button_Inner"></div>
+                </div>
+            </div>
+        </div>
     </div><!--mainInner-->
     <script src="./js/index_inner.js"></script>
 </body>
+
 </html>
