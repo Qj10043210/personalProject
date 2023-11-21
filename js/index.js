@@ -67,7 +67,7 @@ jQ(document).ready(function () {
     var areaMouseInConsoleBoxHead = false;
     var areaMouseInLightString = false;
     var locationOfLightString;
-   
+
     jQ('#consolebox-bar-body-head').on('mousedown', function () {
         // Handle mouseenter event
         areaMouseInConsoleBoxHead = true;
@@ -110,7 +110,7 @@ jQ(document).ready(function () {
     jQ('#lightBox_String_tip').on('mousedown', function () {
         // Handle mouseenter event
         areaMouseInLightString = true;
-        
+
         jQ('#lightBox_String_tip').draggable({
 
             containment: "#lightBox_String",
@@ -123,10 +123,10 @@ jQ(document).ready(function () {
                     clipPath: `polygon(0% 0%, 100% 7%,${100}% ${topPercentage + 5}%, ${0}% ${topPercentage + 5}%)`
 
                 });
-                sePlay03.volume= 0.5;
-                sePlay03.loop =true;
+                sePlay03.volume = 0.5;
+                sePlay03.loop = true;
                 sePlay03.play();
-                
+
             }
         })
     });
@@ -144,7 +144,7 @@ jQ(document).ready(function () {
             });
             jQ('#insertCoin').fadeIn(300);
             jQ('#insertCoin').fadeOut(800);
-            
+
             areaMouseInConsoleBoxHead = false;
         };
         if (areaMouseInLightString) {
@@ -160,9 +160,12 @@ jQ(document).ready(function () {
                         transform: `rotate(135deg)`
 
                     });
+                    const ipAddress = jQ('#inputA').val()+"."+jQ('#inputB').val()+"."+jQ('#inputC').val()+"."+jQ('#inputD').val();
+                    sessionStorage.setItem('ipA',ipAddress);
                     setTimeout(function () {
                         jQ(this).toggleClass('lightBox_on');
                         jQ(this).toggleClass('lightBox_off');
+                        jQ("#inputBox").removeClass('lightBox_off');
                         jQ("#lightBeam_cover").toggleClass('lightBox_on');
                         jQ("#lightBeam_cover").toggleClass('lightBox_off');
                         jQ("#lightBeam_body").toggleClass('lightBox_on');
@@ -240,17 +243,55 @@ jQ(document).ready(function () {
             //33 middle
             var topPercentage = (position.top / jQ('#lightBeam_musicOption_volum').height()) * 100;
             console.log(leftPercentage)
-            
+
             musicPlay03.volume = (Math.abs(leftPercentage) / 83);
             musicPlay04.volume = (Math.abs(leftPercentage) / 83);
             jQ('#lightBeam_musicOption_volum_bar').css({
                 clipPath: `polygon(0% 0%, ${leftPercentage + 8}% 0%, ${leftPercentage + 8}% 100%, 0% 100%`
-    
+
             });
-    
-    
+
+
+        }
+    });
+    jQ('.inputBoxClass').on('focus', function () {
+        if (jQ(this).val() === "000") {
+            jQ(this).val("");
         }
     })
+    jQ('.inputBoxClass').on('blur', function () {
+        if (jQ(this).val() == "") {
+            jQ(this).val("0");
+        }
+    })
+    
+    jQ('.inputBoxClass').on('input', function () {
+
+        var maxLength = parseInt(jQ(this).attr('maxlength'));
+        var currentLength = jQ(this).val().length;
+
+        // If the character count reaches the limit, focus on the next input
+        if (currentLength === maxLength) {
+            jQ(this).next('.inputBoxClass').focus();
+        }
+
+        // Set the default value to "000" if the input is empty
+        if (jQ(this).val() == "") {
+            jQ(this).val("0");
+        }
+    });
+    jQ('.inputBoxClass').on('keydown', function (e) {
+        if (e.which === 9) { // Tab key
+            
+            
+            if(jQ(this).hasClass('inputBoxClass_last')){
+                jQ(this).blur();
+            }else{jQ(this).next('.inputBoxClass').focus();}
+            
+            
+            e.preventDefault();
+        }
+    });
 
 })
 
@@ -342,16 +383,16 @@ jQ(document).on('click', "#lightBeam_animateOption", function () {
 jQ(document).on('click', "#lightBeam_musicOption", function () {
     jQ(this).toggleClass('lightBeam_musicOption_off');
     jQ(this).toggleClass('lightBeam_musicOption_on');
-    let randomNum = anyway02_RandNumberXYZ(3,4,10);
-    let musicPlayMA=null;
-    if(randomNum==3){
+    let randomNum = anyway02_RandNumberXYZ(3, 4, 10);
+    let musicPlayMA = null;
+    if (randomNum == 3) {
         musicPlayMA = musicPlay03;
-    }else{
+    } else {
         musicPlayMA = musicPlay04;
     }
     if (musicPlay < 0) {
-        
-        musicPlayMA.loop =true;
+
+        musicPlayMA.loop = true;
         musicPlayMA.play();
     } else {
         musicPlay03.pause();
@@ -368,7 +409,7 @@ jQ(document).on('click', "#lightBeam_musicOption", function () {
 
 })
 
-jQ(document).on('click', "#coinslot-hole", function(){
+jQ(document).on('click', "#coinslot-hole", function () {
     window.location.href = './inner.html';
 })
 

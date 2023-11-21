@@ -16,6 +16,22 @@ body {
     max-width: 1000px;
     height: 100%;
 }
+#inputBox.lightbox_off{
+    position: fixed;
+    top: 40%;
+    left:43%;
+    width: 10%;
+    
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+}
+#inputBox.lightbox_off>input{
+    width: 100%;
+    text-align: center;
+    background-color: transparent;
+    color: white;
+}
 
 #lightBeam_cover.lightBox_off {
     position: absolute;
