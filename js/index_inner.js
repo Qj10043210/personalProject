@@ -79,8 +79,8 @@ jQ(document).ready(function () {
     var serverAddress = 'http://192.168.150.219:8080/coingate/';
     var test= "test";
     jQ.ajax({
-        url:  serverAddress+"?test="+test ,
-        type: 'GET',
+        url:  serverAddress ,
+        type: 'HEAD',
         
         success: function () {
           console.log('Server is reachable');
