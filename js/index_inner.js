@@ -56,9 +56,9 @@ SiteData(data => {
             } else if (item.theme == "live") {
                 tempText += "http://"
                 tempText += ipAddress
-                tempText += ""
+                tempText += ":8080"
                 tempText += item.url;
-                var serverAddress = 'http://' + ipAddress + item.url;
+                var serverAddress = 'https://' + ipAddress +":8443" + item.url;
                 var test = "";
                 jQ.ajax({
                     url: test + serverAddress,
