@@ -1,9 +1,7 @@
 $.noConflict();
 const jQ = jQuery;
 
-setTimeout(function () {
-    jQ('#weregoing').fadeOut(2000)
-}, 2000);
+
 const musicPlay05_url = "./res/music/003.mp3"
 const musicPlay05 = new Audio(musicPlay05_url);
 const sePlay02_url = "./res/se/SE_Spinning.mp3"
@@ -29,7 +27,7 @@ var initialContentsLocations = [];
 
 const ipAddress = sessionStorage.getItem('ipA');
 function SiteData(callback) {
-    fetch('./res/siteList.json')
+    fetch('https://raw.githubusercontent.com/jillina1004/imagebox/main/siteList.json')
         .then(Response => Response.json())
         .then(data => {
             callback(data);
@@ -59,21 +57,21 @@ SiteData(data => {
                 tempText += ipAddress
                 tempText += ""
                 tempText += item.url;
-                var serverAddress = 'http://'+ipAddress+item.url;
+                var serverAddress = 'http://' + ipAddress + item.url;
                 var test = "";
                 jQ.ajax({
                     url: test + serverAddress,
                     type: 'HEAD',
 
                     success: function () {
-                        
+
                         tempText2 = "<div class='serverEach serverEach_on'><div class='serverEach_back'></div><div class='serverEach_text'>"
                         tempText2 += item.sitename;
                         tempText2 += "</div></div>"
                         jQ('#serverStatus').append(tempText2)
                     },
                     error: function () {
-                        
+
                         tempText2 = "<div class='serverEach serverEach_off'><div class='serverEach_back'></div><div class='serverEach_text'>"
                         tempText2 += item.sitename;
                         tempText2 += "</div></div>"
@@ -84,12 +82,11 @@ SiteData(data => {
             }
             tempText += "' data-sitename='"
             tempText += item.sitename;
-            tempText += "' style='background-image:'url('"
-            tempText += item.image;
-            tempText += "','./css/img/light/light.png')''</div>"
+            tempText += "'><img src='"
+            tempText +=  `${item.image}' onerror="this.src='./css/img/light/light.png'"/></div>"`;
             console.log(tempText2)
             jQ('#mainInnerBox_Content_Area').after(tempText);
-            
+
         })
     }
 
