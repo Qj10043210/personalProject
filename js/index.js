@@ -191,7 +191,10 @@ jQ(document).ready(function () {
                         }, 500)
                     }, 2500);
                 }, 1000);
-
+                 jQ('#lightBox_String_tip').css({
+                top: `${initialStringTipPosition.top}px`,
+                left: `${initialStringTipPosition.left}px`
+            });
 
                 jQ('#lightBox.lightBox_on').css({
                     backgroundImage: `url('./css/img/light/popper_empty.png')`,
