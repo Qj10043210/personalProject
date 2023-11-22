@@ -19,7 +19,7 @@ body {
     max-width: 900px;
     aspect-ratio: 800 / 600;
     background-color: transparent;
-    /* background-image: url('./img/backgroundAll/wereGoing.gif'); */
+    background-image: url('./img/backgroundAll/wereGoing.gif');
     background-size: contain;
     background-repeat: no-repeat;
     z-index: 50;
@@ -42,6 +42,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    opacity: 0;
+    animation: animate_box_loading3 ease 10s forwards;
 }
 .serverEach{
     flex-grow: 0.4;
@@ -539,7 +541,7 @@ body {
 }
 #mainInnerBox_Box_Head.BoxHead_Acchonburike{
     transform-origin: bottom;
-    animation: animate_box_top 5s  ease-out forwards;
+    animation: animate_box_top 3.5s  ease-out forwards;
 }
 #mainInnerBox_Box_Head.BoxHead_Acchonburike::after{
     animation: animate_box_top_opa 4s ease-out forwards;
@@ -585,21 +587,19 @@ body {
     aspect-ratio: 1/1;
     border-radius: 50%;
     z-index: 29;
-    background-color: rgb(63, 66, 60);
+    
     transition: left 0.25s, top 0.1s;
+}
+.mainInnerBox_Content_Area_Items>img{
+    width: 100%;
+    height: 100%;
 }
 
 .mainInnerBox_Content_Area_Items.items_Acchonburike {
     animation: animate_goodbuy 3s ease forwards;
 }
 
-#mainInnerBox_Content_Area_Item_A {}
 
-#mainInnerBox_Content_Area_Item_B {
-
-    background-color: rgb(63, 66, 60);
-
-}
 
 #messageBox.msgShowUp {
     font-family: 'GRD';
