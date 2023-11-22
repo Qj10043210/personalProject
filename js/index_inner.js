@@ -12,7 +12,8 @@ const sePlay04_url = "./res/se/SE_clicking.mp3"
 const sePlay04 = new Audio(sePlay04_url);
 const sePlay05_url = "./res/se/SE_defaulting.mp3"
 const sePlay05 = new Audio(sePlay05_url);
-
+const sePlay06_url = "./res/se/SE_opening.mp3"
+const sePlay06 = new Audio(sePlay06_url);
 var musicPlayInner = -1;
 const initialCrawSPosition = jQ('#mainInnerBox_Claw_Shadow').position();
 const initialCrawPosition = jQ('#mainInnerBox_Claw').position();
@@ -83,7 +84,7 @@ SiteData(data => {
             tempText += "' data-sitename='"
             tempText += item.sitename;
             tempText += "'><img src='"
-            tempText +=  `${item.image}' onerror="this.src='./css/img/light/light.png'"/></div>"`;
+            tempText += `${item.image}' onerror="this.src='./css/img/light/light.png'"/></div>"`;
             console.log(tempText2)
             jQ('#mainInnerBox_Content_Area').after(tempText);
 
@@ -348,6 +349,9 @@ function whereClawHere() {
                 jQ('#messageBox_TextArea_Direction').text(jQ('.mainInnerBox_Content_Area_Items').eq(currentIndex).data('sitename'))
                 jQ('#messageBox_Yes').attr('data-url', jQ('.mainInnerBox_Content_Area_Items').eq(currentIndex).data('url'))
                 jQ('#messageBox').addClass('msgShowUp')
+                sePlay06.volume = 0.7;
+                sePlay06.loop = false;
+                sePlay06.play();
                 clearInterval(intervalCurItem2);
 
             }
