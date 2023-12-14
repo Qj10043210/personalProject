@@ -54,9 +54,9 @@ SiteData(data => {
             if (item.theme == "git") {
                 tempText += item.url;
             } else if (item.theme == "live") {
-                tempText += "http://"
+                tempText += "https://"
                 tempText += ipAddress
-                tempText += ":8080"
+                tempText += ":8443"
                 tempText += item.url;
                 var serverAddress = 'https://' + ipAddress +":8443" + item.url;
                 var test = "";
@@ -73,7 +73,7 @@ SiteData(data => {
                     },
                     error: function () {
 
-                        tempText2 = "<div class='serverEach serverEach_off'><div class='serverEach_back'></div><div class='serverEach_text'>"
+                        tempText2 = "<div class='serverEach serverEach_on'><div class='serverEach_back'></div><div class='serverEach_text'>"
                         tempText2 += item.sitename;
                         tempText2 += "</div></div>"
                         jQ('#serverStatus').append(tempText2)
