@@ -62,8 +62,8 @@ SiteData(data => {
                 var test = "";
                 jQ.ajax({
                     url: test + serverAddress,
-                    type: 'HEAD',
-
+                    type: 'GET',
+                    dataType: 'jsonp',
                     success: function () {
 
                         tempText2 = "<div class='serverEach serverEach_on'><div class='serverEach_back'></div><div class='serverEach_text'>"
