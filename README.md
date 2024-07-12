@@ -1,3 +1,3 @@
 # personalProject
 
-https://jillina10043210.github.io/personalProject/
+https://qj10043210.github.io/personalProject/
